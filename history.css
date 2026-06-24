@@ -210,6 +210,7 @@ body.history-page {
   color: var(--color-green, #3D4A2F); /* 올리브 그린 */
   line-height: 1.15;
   letter-spacing: 0.02em;
+  white-space: nowrap; /* 좁은 화면에서 '락고재'가 줄바꿈되어 세로로 잘리는 것 방지 */
 }
 
 .brand-title-sub {
@@ -356,8 +357,8 @@ body.history-page {
    ■ 반응형 미디어 쿼리 (Responsive Media Queries)
 ========================================================= */
 
-/* ── 태블릿 미디어 쿼리 (max-width: 1024px) ── */
-@media (max-width: 1024px) {
+/* ── 태블릿/좁은 데스크탑 미디어 쿼리 (max-width: 1400px) ── */
+@media (max-width: 1400px) {
   .history-container {
     grid-template-columns: 460px 1fr 400px;
     max-height: none;

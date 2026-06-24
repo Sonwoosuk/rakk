@@ -501,6 +501,8 @@ img { display: block; max-width: 100%; }
   gap: 5px;
   width: 28px;
   height: 28px;
+  cursor: pointer;
+  touch-action: manipulation; /* 모바일 탭 지연 제거 */
 }
 .util__toggle span {
   display: block;
@@ -812,7 +814,8 @@ img { display: block; max-width: 100%; }
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
-    transition: opacity 350ms var(--ease-calm), transform 350ms var(--ease-calm), visibility 0s;
+    /* 열 때는 시작이 즉시 빠른 ease-out + 짧은 시간으로 텀 없이 바로 내려옴 */
+    transition: opacity 200ms cubic-bezier(0, 0, 0.2, 1), transform 200ms cubic-bezier(0, 0, 0.2, 1), visibility 0s;
   }
 
   /* 모바일 네비 내 로고 */

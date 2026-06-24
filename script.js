@@ -393,6 +393,7 @@
   var IMG_TOTAL     = STORY_IMAGES.length;
   var storyIdx      = 0;          // 현재 "left" 슬롯에 보이는 이미지 인덱스
   var storyLocked   = false;
+  var storyInited   = false;      // 슬라이더 초기화 여부 (중복 초기화/잔상 방지)
 
   // 슬롯 순서 (왼→오): 다음/이전 시 한 칸씩 이동
   var SLOTS = ['off-left', 'left', 'main', 'right', 'off-right'];
@@ -419,16 +420,19 @@
     return ((i % IMG_TOTAL) + IMG_TOTAL) % IMG_TOTAL;
   }
 
-  // 초기 배치: left, main, right
+  // 초기 배치: left, main, right (딱 한 번만 실행)
   function initStory() {
+    if (storyInited) return;
+    storyInited = true;
     activeWraps['left']  = createWrap(STORY_IMAGES[circIdx(storyIdx)],     'left');
     activeWraps['main']  = createWrap(STORY_IMAGES[circIdx(storyIdx + 1)], 'main');
     activeWraps['right'] = createWrap(STORY_IMAGES[circIdx(storyIdx + 2)], 'right');
+    startStoryAutoPlay(); // 초기화가 끝난 뒤에만 자동재생 시작
   }
 
   // 다음 (→)
   function storyNext() {
-    if (storyLocked) return;
+    if (!storyInited || storyLocked) return;
     storyLocked = true;
 
     // 새 이미지를 off-right에 생성
@@ -463,7 +467,7 @@
 
   // 이전 (←)
   function storyPrev() {
-    if (storyLocked) return;
+    if (!storyInited || storyLocked) return;
     storyLocked = true;
 
     // 새 이미지를 off-left에 생성
@@ -531,8 +535,7 @@
     }
   });
 
-  // 초기 자동 재생 활성화
-  startStoryAutoPlay();
+  // 자동 재생은 슬라이더 초기화(initStory) 직후에 시작됨 — 잔상 방지
 
   /* ---------- Story 슬라이더 지연 초기화 (IntersectionObserver) ---------- */
   if (storySection && storyStage && "IntersectionObserver" in window) {

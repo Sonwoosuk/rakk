@@ -533,8 +533,10 @@ body.dining-page {
 
 @media (max-width: 768px) {
   .dn-hero {
-    height: 60vh;
-    min-height: 480px;
+    height: auto;
+    min-height: max(480px, 60vh);
+    padding-top: var(--header-h-mobile);
+    box-sizing: border-box;
   }
   .dn-hero__content {
     padding: 40px 20px;
@@ -576,8 +578,8 @@ body.dining-page {
 
 @media (max-width: 480px) {
   .dn-hero {
-    height: 50vh;
-    min-height: 360px;
+    height: auto;
+    min-height: max(360px, 50vh);
   }
   .dn-hero__title {
     font-size: clamp(28px, 8vw, 40px);

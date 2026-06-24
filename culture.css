@@ -322,6 +322,9 @@ body.culture-page {
     height: 60vw;
     min-height: 320px;
   }
+  .cl-hero__left img {
+    object-position: center top;
+  }
   .cl-hero__right {
     flex-direction: column;
   }
@@ -358,7 +361,7 @@ body.culture-page {
   }
   .cl-tea__hanja {
     right: var(--gutter);
-    bottom: -10px;
+    bottom: 20px;
     font-size: 48px;
   }
 

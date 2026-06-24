@@ -1,0 +1,325 @@
+/* =========================================================
+   락고재 서울 본관 페이지
+========================================================= */
+
+body.seoul-page {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  overflow-x: hidden;
+}
+
+/* =========================================================
+   HERO - 서울 본관
+   초가/기와와 다른 레이아웃:
+   왼쪽 대형 세로 이미지 + 오른쪽 상하 2단 이미지 + 좌상단 타이틀
+========================================================= */
+.seoul-hero {
+  width: 100%;
+  min-height: 100vh;
+  padding: var(--header-h) clamp(20px, 3.1vw, var(--gutter)) 0;
+  background: var(--color-paper);
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.seoul-hero__stage {
+  position: relative;
+  width: 100%;
+  max-width: var(--container);
+  height: calc(100vh - var(--header-h));
+  min-height: 520px;
+}
+
+.seoul-hero__media {
+  position: absolute;
+  margin: 0;
+  overflow: hidden;
+  background: var(--color-placeholder-grey);
+}
+
+.seoul-hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 왼쪽 대형 세로 이미지 */
+.seoul-hero__media--main {
+  left: 0;
+  top: 6%;
+  width: 52%;
+  height: 66%;
+}
+
+/* 오른쪽 상단 이미지 */
+.seoul-hero__media--top {
+  right: 0;
+  top: 6%;
+  width: 44%;
+  height: 42%;
+}
+
+/* 오른쪽 하단 이미지 */
+.seoul-hero__media--bottom {
+  right: 0;
+  bottom: 6%;
+  width: 44%;
+  height: 40%;
+}
+
+/* 타이틀: 왼쪽 이미지 아래 여백 공간 */
+.seoul-hero__title {
+  position: absolute;
+  left: 2%;
+  bottom: 6%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-heading);
+  font-size: clamp(42px, 5.45vw, 68px);
+  font-weight: 400;
+  line-height: 1.03;
+  letter-spacing: 0;
+  color: #3D4A2F;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media (max-width: 1024px) {
+  .seoul-hero {
+    padding-top: var(--header-h-mobile);
+  }
+  .seoul-hero__stage {
+    height: calc(100vh - var(--header-h-mobile));
+    min-height: 500px;
+  }
+  .seoul-hero__title {
+    font-size: clamp(38px, 5.45vw, 54px);
+  }
+}
+
+@media (max-width: 760px) {
+  .seoul-hero {
+    min-height: auto;
+    padding: var(--header-h-mobile) var(--gutter) 56px;
+    overflow: visible;
+  }
+  .seoul-hero__stage {
+    height: auto;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .seoul-hero__media,
+  .seoul-hero__title {
+    position: static;
+    width: 100% !important;
+    height: auto !important;
+  }
+  .seoul-hero__media--main {
+    grid-column: 1 / -1;
+    aspect-ratio: 4 / 3;
+  }
+  .seoul-hero__media--top,
+  .seoul-hero__media--bottom {
+    aspect-ratio: 1 / 1;
+  }
+  .seoul-hero__title {
+    grid-column: 1 / -1;
+    margin-top: 8px;
+    font-size: clamp(34px, 11vw, 48px);
+    white-space: normal;
+  }
+}
+
+@media (max-width: 480px) {
+  .seoul-hero { padding-inline: 20px; }
+  .seoul-hero__stage { gap: 16px; }
+}
+
+/* =========================================================
+   REST SECTION (北.)
+========================================================= */
+.seoul-rest {
+  background-color: var(--color-white);
+  padding: 100px 0 0 0;
+  position: relative;
+  width: 100%;
+}
+
+.seoul-rest::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 60px;
+  background-color: var(--color-warm-white);
+  margin-top: 100px;
+}
+
+.seoul-rest__inner {
+  display: flex;
+  align-items: flex-start;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.seoul-rest__hanja {
+  font-family: var(--font-hanja);
+  font-size: 110px;
+  font-weight: 700;
+  color: var(--color-ink);
+  line-height: 1;
+  margin-top: -12px;
+}
+
+.seoul-rest__desc {
+  margin-left: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.seoul-rest__desc p {
+  margin: 0;
+  color: var(--color-ink-soft);
+  letter-spacing: -0.02em;
+}
+
+.seoul-rest__desc .desc-ko {
+  font-family: var(--font-body);
+  line-height: 2.1;
+  font-size: 23px;
+}
+
+.seoul-rest__desc .desc-en {
+  font-family: var(--font-en);
+  line-height: 1.8;
+  font-size: 23px;
+}
+
+.seoul-rest__link {
+  margin-left: auto;
+  align-self: flex-end;
+}
+
+.seoul-rest__link a {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 26px;
+  color: var(--color-ink);
+  text-decoration: none;
+  gap: 12px;
+  letter-spacing: -0.02em;
+}
+
+.seoul-rest__link .arrow-icon {
+  color: var(--color-ink);
+  margin-top: 2px;
+  width: 140px;
+  opacity: 0;
+  filter: blur(4px);
+  transform: translateX(-15px);
+  transition: opacity 0.4s var(--ease-calm), filter 0.4s var(--ease-calm), transform 0.4s var(--ease-calm);
+}
+
+.seoul-rest__link a:hover .arrow-icon {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateX(0);
+}
+
+@media (max-width: 1024px) {
+  .seoul-rest__hanja { font-size: 80px; }
+  .seoul-rest__desc p { font-size: 18px; }
+  .seoul-rest__desc { margin-left: 40px; }
+  .seoul-rest__link a { font-size: 20px; }
+  .seoul-rest__link .arrow-icon { width: 100px; }
+}
+
+@media (max-width: 760px) {
+  .seoul-rest__inner { flex-direction: column; align-items: flex-start; }
+  .seoul-rest__hanja { margin-top: 0; }
+  .seoul-rest__desc { margin-left: 0; margin-top: 20px; }
+  .seoul-rest__desc p { font-size: 16px; }
+  .seoul-rest__link { margin-left: 0; margin-top: 40px; align-self: flex-start; }
+  .seoul-rest__link a { font-size: 18px; }
+  .seoul-rest__link .arrow-icon { width: 80px; }
+}
+
+/* =========================================================
+   PREMIUM AMENITY SECTION
+========================================================= */
+.seoul-amenity {
+  background-color: var(--color-warm-white);
+  padding: 140px 0;
+  overflow: hidden;
+}
+
+.seoul-amenity__inner {
+  display: flex;
+  align-items: center;
+  padding-left: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter)));
+}
+
+.seoul-amenity__text {
+  flex: 0 0 45%;
+  padding-right: 80px;
+  box-sizing: border-box;
+}
+
+.seoul-amenity__slider-wrap {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 1024px) {
+  .seoul-amenity__text { flex: 0 0 50%; padding-right: 40px; }
+}
+
+@media (max-width: 760px) {
+  .seoul-amenity { padding: 80px 0; }
+  .seoul-amenity__inner {
+    flex-direction: column;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+  }
+  .seoul-amenity__text { width: 100%; padding-right: 0; margin-bottom: 50px; }
+  .seoul-amenity__slider-wrap {
+    width: 100%;
+    margin-right: calc(var(--gutter) * -1);
+  }
+}
+
+/* =========================================================
+   SEOUL ROOMS SECTION
+========================================================= */
+.seoul-rooms-section {
+  position: relative;
+  width: 100%;
+  background-color: #3D4A2F;
+  padding: 180px 0;
+  color: var(--color-white);
+  overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+  .seoul-rooms-section {
+    padding: 100px 0;
+  }
+}
+
+
+/* =========================================================
+   RESERVATION SECTION
+========================================================= */
+.seoul-reservation {
+  background-color: var(--color-warm-white);
+  padding: 120px var(--gutter);
+}

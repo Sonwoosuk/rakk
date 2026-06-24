@@ -1,0 +1,1024 @@
+/* =========================================================
+   락고재 브랜드 히스토리 서브 페이지 스타일 (시안 100% 밀착 대응)
+========================================================= */
+
+body.history-page {
+  background-color: var(--color-paper, #FAF8F5);
+  color: var(--color-ink, #2B1A13);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* 헤더 제외한 본문 영역 */
+.history-main {
+  padding-top: var(--header-h, 80px);
+  width: 100%;
+  height: calc(100vh - var(--header-h, 80px));
+  min-height: 650px; /* 최소 높이를 늘려 화면이 좁을 때 컨텐츠 압착 방지 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 10;
+  overflow: visible; /* 콘텐츠가 짤리지 않고 다 노출되도록 넘침 허용 */
+}
+
+/* 1560x1080 기준 가로 압축 컨테이너 (여백 최소화로 요소들을 가깝게 배치) */
+.history-container {
+  display: grid;
+  /* 좌측 비디오 열 고정 (여백 40px + 너비 534px + 우측여백 20px = 594px), 우측 타임라인 고정(490px = 띠 450px + 우측여백 40px) */
+  grid-template-columns: 594px 1fr 490px;
+  width: 100%;
+  max-width: 1560px; /* 가로 최대폭을 1560px로 제한하여 요소들을 가깝게 밀착 */
+  height: 100%;
+  margin: 0 auto;
+  padding: 0; /* 뷰포트 상하에 밀착 */
+  gap: 0;
+  box-sizing: border-box;
+  align-items: stretch;
+}
+
+/* =========================================================
+   1. 좌측 비디오 컬럼 (왼쪽에 얇은 여백을 두고 세로로 얇고 길게 배치)
+========================================================= */
+.history-video-col {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  /* 왼쪽에 얇은 여백(40px)과 우측 20px 여백으로 비디오를 정렬 */
+  padding-left: 40px;
+  padding-right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.video-frame {
+  position: relative;
+  /* 사용자가 요청한 가로 534px 규격으로 조정 */
+  width: 534px;
+  height: 100%;
+  overflow: hidden;
+  background-color: #000;
+  border-radius: 0;
+}
+
+.video-frame video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 미니멀 비디오 컨트롤바 */
+.video-controls {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 5;
+  background: rgba(43, 26, 19, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 10px 18px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-sizing: border-box;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 1.5px;
+  position: relative;
+  cursor: pointer;
+}
+
+.progress-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0%;
+  background: var(--color-white, #ffffff);
+  border-radius: 1.5px;
+}
+
+.play-pause-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white, #ffffff);
+}
+
+.play-pause-btn .btn-text {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+}
+
+/* =========================================================
+   2. 중앙 타이틀 컬럼 (지그재그 배치 & 부드러운 안쪽 그림자 먹선)
+========================================================= */
+.history-keywords-col {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 60px 40px;
+  box-sizing: border-box;
+  position: relative;
+  background-color: var(--color-paper, #FAF8F5);
+  overflow: hidden; /* 락고재 브랜드 로고 텍스트가 영역 밖으로 삐져나가는 것 방지 */
+}
+
+.keywords-wrap {
+  position: relative;
+  width: 100%;
+  height: 70%;
+}
+
+/* 지그재그 absolute 배치 */
+.keyword-item {
+  position: absolute;
+  font-family: var(--font-heading);
+  font-size: clamp(52px, 5.2vw, 84px);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  
+  /* 비활성 상태: 투명하고 연한 아웃라인 붓글씨 느낌 */
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(90, 70, 54, 0.35);
+  text-shadow: 0 0 1px rgba(90, 70, 54, 0.1);
+  opacity: 0.45; /* 반정도 드러나도록 불투명도 증가 */
+  filter: blur(0.8px); /* 블러를 반정도로 약하게(0.8px) 조절 */
+  transform: scale(0.95);
+  transition: all 800ms var(--ease-calm);
+  will-change: opacity, filter, transform, color, -webkit-text-stroke;
+}
+
+/* 북촌: 상단 좌측 */
+#kw-bukchon {
+  top: 6%;
+  left: 8%;
+}
+
+/* 안동: 중앙 우하단 */
+#kw-andong {
+  top: 34%;
+  left: 32%;
+}
+
+/* 컬쳐: 하단 우측 */
+#kw-culture {
+  top: 62%;
+  left: 52%;
+}
+
+/* 활성화 시: 짙은 묵직한 먹선 글자로 변환 및 선명화 */
+.keyword-item.is-active {
+  color: #5A4636;
+  -webkit-text-stroke: 0;
+  opacity: 0.95;
+  filter: blur(0);
+  transform: scale(1.05);
+  font-weight: 500;
+}
+
+/* 락고재 100년 브랜드 대타이틀 */
+.history-brand-title {
+  margin-top: auto;
+  align-self: flex-end;
+  text-align: right;
+  padding-right: 12px;
+}
+
+.brand-title-text {
+  font-family: var(--font-heading);
+  font-size: clamp(48px, 4.5vw, 68px);
+  font-weight: 400;
+  color: var(--color-green, #3D4A2F); /* 올리브 그린 */
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+}
+
+.brand-title-sub {
+  font-family: var(--font-hanja); /* Noto Serif TC — 숫자+한자 통일 렌더링 */
+  font-size: clamp(32px, 3.2vw, 52px);
+  font-weight: 300;
+  color: var(--color-green, #3D4A2F); /* 디자인 토큰 올리브 그린 적용 */
+  letter-spacing: 0.04em;
+}
+
+/* =========================================================
+   3. 우측 역사 이야기 컬럼 (쑥색/회색 꽉 찬 배경 + 텍스트 슬라이더)
+========================================================= */
+.history-timeline-col {
+  height: 100%;
+  width: 490px; /* 띠(450px) + 우측 여백(40px) */
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* 움직이는 텍스트 뷰포트 (오른쪽 40px 베이지 여백 비워둠, 개별 카드박스 돌출을 위해 뷰포트는 투명하게) */
+.timeline-slider-viewport {
+  position: relative;
+  width: calc(100% - 40px); /* 450px 너비 띠, 우측 40px 페이퍼 여백 */
+  height: 100%;
+  background-color: transparent; /* 뷰포트 배경 투명화 */
+  z-index: 2;
+  overflow: hidden;
+}
+
+/* 상하 네비게이션 버튼 (정중앙 텍스트 상하 경계선에 깔끔하게 얹힘, 페이퍼 배경에 맞춰 올리브 그린 톤) */
+.timeline-nav-btn {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background: transparent; /* 다른 배경 박스 없이 투명하게 배치 */
+  border: none;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 245, 230, 0.7); /* 크림 베이지 반투명 */
+  cursor: pointer;
+  transition: all 300ms var(--ease-calm);
+}
+
+.timeline-nav-btn:hover {
+  color: var(--color-cream, #FFF5E6); /* 호버 시 밝은 크림 베이지 */
+  transform: translateX(-50%) scale(1.15);
+}
+
+/* 정중앙 높이(50%)에서 스토리 카드 높이 범위 바로 바깥에 배치 */
+.timeline-nav-btn.btn-prev {
+  top: calc(50% - 150px);
+}
+
+.timeline-nav-btn.btn-next {
+  bottom: calc(50% - 150px);
+}
+
+/* 카드 트랙 */
+.timeline-cards-track {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: calc(50vh - 215px); 
+  transition: transform 600ms cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+/* 스토리 카드 (올리브 그린 배경 박스로 카드별로 정렬) */
+.timeline-card {
+  width: 85%;
+  height: 270px;
+  margin: 0; /* 카드 간 여백 없이 바로 밀착시킴 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  pointer-events: auto;
+  border-radius: 0;
+  background-color: var(--color-green, #3D4A2F); /* 개별 카드에 올리브 그린 배경 지정 */
+  border: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04); /* 아주 연한 깊이감 제공 */
+  
+  /* 비활성 카드: 흐릿하게 블러 처리 및 낮은 투명도로 뒤로 가 있는 느낌 연출 */
+  opacity: 0.45; /* 가독성을 위해 불투명도를 살짝 올림 */
+  filter: blur(1.5px); /* 사용자의 요청에 따라 블러 세기를 부드럽게 약화(1.5px) */
+  transform: scale(0.9) translateX(0);
+  transition: all 800ms var(--ease-calm);
+  will-change: opacity, filter, transform;
+}
+
+.timeline-card-content {
+  width: 100%;
+  padding: 20px 24px;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.card-year {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 500;
+  color: rgba(255, 245, 230, 0.45); /* 비활성 상태의 소프트 크림/베이지 연도 */
+  margin: 0 0 12px 0;
+  letter-spacing: 0.04em;
+  transition: color 800ms;
+}
+
+.card-desc {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  font-weight: 300;
+  color: rgba(255, 245, 230, 0.4); /* 비활성 상태의 소프트 크림/베이지 본문 */
+  line-height: 1.7;
+  margin: 0;
+  word-break: keep-all;
+  transition: color 800ms;
+}
+
+/* 활성화된 카드 (정중앙 뷰포트 센터에 오며 블러가 풀리고 올리브 그린 배경과 함께 왼쪽으로 돌출됨) */
+.timeline-card.is-active {
+  opacity: 0.95;
+  filter: blur(0); /* 블러 완전 해제 */
+  transform: scale(1.05) translateX(-25px); /* 조금 더 선명하고 돋보이게 줌인 및 왼쪽으로 25px 이동 */
+  box-shadow: -10px 15px 35px rgba(61, 74, 47, 0.18); /* 왼쪽 돌출을 강조하는 입체적인 그림자 */
+}
+
+.timeline-card.is-active .card-year {
+  color: var(--color-cream, #FFF5E6); /* 락고재 베이지/크림 연도 */
+}
+
+.timeline-card.is-active .card-desc {
+  color: #ffffff; /* 가독성이 뛰어난 순백색 본문 */
+  font-weight: 400;
+}
+
+/* =========================================================
+   ■ 반응형 미디어 쿼리 (Responsive Media Queries)
+========================================================= */
+
+/* ── 태블릿 미디어 쿼리 (max-width: 1024px) ── */
+@media (max-width: 1024px) {
+  .history-container {
+    grid-template-columns: 460px 1fr 400px;
+    max-height: none;
+    aspect-ratio: auto;
+  }
+
+  .history-video-col {
+    padding-left: 30px;
+    padding-right: 20px;
+  }
+
+  .video-frame {
+    width: 410px;
+  }
+
+  .history-timeline-col {
+    width: 400px;
+  }
+
+  .timeline-slider-viewport {
+    width: calc(100% - 40px); /* 태블릿에서는 오른쪽 마진 40px로 축소 */
+  }
+
+  .timeline-nav-btn.btn-prev {
+    top: calc(50% - 130px);
+  }
+
+  .timeline-nav-btn.btn-next {
+    bottom: calc(50% - 130px);
+  }
+
+  .timeline-card {
+    height: 240px;
+    margin: 0; /* 마진 밀착 */
+  }
+
+  .timeline-card.is-active {
+    transform: scale(1.05) translateX(-15px); /* 태블릿에서는 좌측 돌출 오프셋을 15px로 축소 */
+  }
+
+  .timeline-card-content {
+    padding: 20px 16px;
+  }
+
+  .card-year {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+
+  .card-desc {
+    font-size: 12.5px;
+    line-height: 1.6;
+  }
+}
+
+/* ── 모바일 미디어 쿼리 (max-width: 768px) ── */
+@media (max-width: 768px) {
+  .history-main {
+    height: auto;
+    padding-bottom: 60px;
+  }
+
+  .history-container {
+    grid-template-columns: 1fr;
+    max-height: none;
+    aspect-ratio: auto;
+    gap: 40px;
+    padding: 0;
+  }
+
+  /* 1. 비디오 영역: 상단 100% 16:9 배치 */
+  .history-video-col {
+    width: 100%;
+    height: auto;
+    padding: 0 16px;
+    justify-content: center;
+  }
+
+  .video-frame {
+    width: 100%;
+    max-width: 534px; /* 모바일에서도 534px 스케일 한계 적용 */
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
+  .video-controls {
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    padding: 8px 14px;
+  }
+
+  /* 2. 중앙 영역: 가로 배치 */
+  .history-keywords-col {
+    height: auto;
+    padding: 24px 16px;
+    gap: 32px;
+    flex-direction: column-reverse; /* 타이틀 상단, 탭 하단 */
+    align-items: stretch;
+  }
+
+  .keywords-wrap {
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-bottom: 1px solid rgba(163, 133, 92, 0.15);
+    padding-bottom: 12px;
+  }
+
+  .keyword-item {
+    position: static;
+    font-size: 20px;
+    filter: blur(0);
+    opacity: 0.4;
+    transform: none;
+    padding: 6px 12px;
+    -webkit-text-stroke: 0;
+    color: var(--color-ink, #2B1A13);
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s, color 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .keyword-item:active {
+    opacity: 0.7;
+    transform: scale(0.93);
+  }
+
+  .keyword-item.is-active {
+    opacity: 1;
+    transform: scale(1.1);
+    color: #5A4636;
+  }
+
+  .history-brand-title {
+    align-self: center;
+    text-align: center;
+    padding-right: 0;
+  }
+
+  .brand-title-text {
+    font-size: 38px;
+  }
+
+  .brand-title-sub {
+    font-size: 28px;
+  }
+
+  /* 3. 우측 영역: 모바일 뷰에 맞춤 */
+  .history-timeline-col {
+    width: 100%;
+    height: 380px;
+    padding: 20px 0;
+  }
+
+  .timeline-slider-viewport {
+    width: 100%; /* 모바일에서는 가로 꽉 차게 여백 제거 */
+  }
+
+  .timeline-nav-btn.btn-prev {
+    top: calc(50% - 100px);
+  }
+
+  .timeline-nav-btn.btn-next {
+    bottom: calc(50% - 100px);
+  }
+
+  .timeline-card {
+    width: 90%;
+    height: 200px;
+    margin: 0; /* 마진 밀착 */
+  }
+
+  .timeline-card.is-active {
+    transform: scale(1.03) translateX(0); /* 모바일에서는 가로 중앙 정렬 유지를 위해 좌측 돌출 제거 */
+  }
+
+  .timeline-card-content {
+    padding: 20px 16px;
+  }
+
+  .card-year {
+    font-size: 20px;
+    margin-bottom: 6px;
+  }
+
+  .card-desc {
+    font-size: 12px;
+    line-height: 1.55;
+  }
+}
+
+/* =========================================================
+   4. 하단 디테일 섹션 (락고재 하회 기와 본관 소개)
+========================================================= */
+.history-detail-section {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  min-height: 800px;
+  background-color: #ffffff !important; /* 강제로 불투명한 흰색 배경 적용하여 메인 영역 삐짐 차단 */
+  position: relative;
+  z-index: 20; /* 메인 영역의 요소들과 명확히 레이어 구분 */
+  margin-top: 150px; /* 메인 영역 삐짐 콘텐츠와의 충돌 방지를 위해 아래로 넉넉하게 밀어냄 */
+}
+
+.detail-left {
+  flex: 0 0 50%; /* 가로 너비 50%로 확장 */
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  padding: 6% 2% 6% 4%; /* 우측 패딩을 줄여서 한자가 이미지에 밀착되도록 조정 */
+  box-sizing: border-box;
+}
+
+.detail-jar-col {
+  flex: 0 0 25%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding-right: 20px;
+}
+
+.detail-jar {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  object-fit: contain;
+}
+
+.detail-desc-col {
+  flex: 1;
+  display: flex;
+  align-items: flex-end; /* 설명 글을 아래로 정렬하여 조화 확보 */
+  justify-content: flex-start;
+  padding-bottom: 24px;
+  padding-right: 20px;
+}
+
+.detail-desc {
+  font-family: var(--font-body, 'Pretendard Variable', sans-serif);
+  font-size: clamp(13px, 0.95vw, 15px);
+  color: #555555;
+  line-height: 2.1;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  margin: 0;
+  word-break: keep-all;
+}
+
+.detail-hanja-col {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding-right: 15px; /* 한자 옆 이미지와 아주 얇은 갭(Gap)만 두고 밀착 */
+}
+
+.detail-hanja {
+  text-align: right;
+  font-family: var(--font-hanja, 'Noto Serif TC', serif);
+  font-size: clamp(64px, 4.8vw, 84px);
+  font-weight: 300;
+  color: var(--color-green, #3D4A2F);
+  line-height: 1.05; /* 줄간격을 촘촘하게 하여 붓글씨 느낌 살림 */
+  letter-spacing: 0;
+}
+
+.detail-right {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.detail-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── 미디어 쿼리 ── */
+@media (max-width: 1024px) {
+  .history-detail-section {
+    flex-direction: column;
+    height: auto;
+    margin-top: 80px; /* 태블릿에서는 마진 축소 */
+  }
+  .detail-left {
+    flex: none;
+    width: 100%;
+    padding: 8% 5%;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+  }
+  .detail-right {
+    flex: none;
+    width: 100%;
+    height: 50vh;
+  }
+  .detail-jar-col {
+    padding-right: 15px;
+  }
+  .detail-desc-col {
+    padding-bottom: 16px;
+    padding-right: 15px;
+  }
+  .detail-hanja-col {
+    padding-right: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .detail-left {
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 20px;
+    gap: 30px;
+  }
+  .detail-jar-col {
+    padding-right: 0;
+    margin-bottom: 0;
+    justify-content: center;
+  }
+  .detail-desc-col {
+    padding-bottom: 0;
+    padding-right: 0;
+    text-align: center;
+  }
+  .detail-desc {
+    text-align: center;
+  }
+  .detail-hanja-col {
+    padding-right: 0;
+    justify-content: center;
+  }
+  .detail-hanja {
+    text-align: center;
+  }
+  .history-detail-section {
+    margin-top: 40px; /* 모바일에서는 마진 대폭 축소 */
+  }
+}
+
+/* =========================================================
+   5. 세로 해상도가 좁은 화면 대응 (화면 찌부러짐 및 잘림 방지)
+   ========================================================= */
+@media (max-height: 820px) and (min-width: 769px) {
+  .history-main {
+    height: auto !important;
+    max-height: none !important;
+    min-height: 720px;
+    padding-top: var(--header-h, 80px);
+    padding-bottom: 40px;
+    overflow: visible; /* 좁은 화면에서는 넘침을 허용하되 전체 스크롤로 유도 */
+  }
+
+  .history-container {
+    height: 640px; /* 그리드 높이를 640px로 고정하여 정렬 깨짐 방지 */
+  }
+
+  .video-frame {
+    height: 640px;
+  }
+}
+
+/* =========================================================
+   6. 안식 섹션 (락고재 안식 소개)
+   ========================================================= */
+.history-ansik-section {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  min-height: 800px;
+  background-color: var(--color-green, #3D4A2F);
+  position: relative;
+  z-index: 20;
+}
+
+.ansik-left {
+  flex: 0 0 60%; /* 가로 너비 약 60% 차지 */
+  position: relative;
+  overflow: hidden;
+}
+
+.ansik-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ansik-right {
+  flex: 1; /* 나머지 40% 차지 */
+  background-color: var(--color-green, #3D4A2F);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 6% 8% 8% 6%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.ansik-content {
+  width: 100%;
+}
+
+.ansik-hanja {
+  font-family: var(--font-hanja, 'Noto Serif TC', serif);
+  font-size: clamp(54px, 4vw, 76px);
+  font-weight: 300;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  margin-bottom: 40px;
+  line-height: 1.2;
+}
+
+.ansik-desc-ko {
+  font-family: var(--font-body, 'Pretendard Variable', sans-serif);
+  font-size: clamp(13.5px, 0.95vw, 15px);
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 2.0;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  margin-bottom: 35px;
+  word-break: keep-all;
+}
+
+.ansik-desc-ko p br,
+.ansik-desc-en p br {
+  margin-bottom: 2px;
+}
+
+.ansik-desc-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(14px, 1.05vw, 16px);
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.8;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+.ansik-logo-wrap {
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+  width: 90px;
+  height: auto;
+}
+
+.ansik-logo {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* ── 반응형 미디어 쿼리 ── */
+@media (max-width: 1024px) {
+  .history-ansik-section {
+    flex-direction: column-reverse; /* 이미지가 위, 텍스트가 아래 배치 */
+    height: auto;
+  }
+  
+  .ansik-left {
+    flex: none;
+    width: 100%;
+    height: 50vh;
+  }
+  
+  .ansik-right {
+    flex: none;
+    width: 100%;
+    padding: 60px 40px 120px 40px;
+  }
+
+  .ansik-hanja {
+    margin-bottom: 25px;
+  }
+
+  .ansik-desc-ko {
+    margin-bottom: 25px;
+  }
+  
+  .ansik-logo-wrap {
+    bottom: 40px;
+    right: 40px;
+    width: 75px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ansik-right {
+    padding: 50px 24px 100px 24px;
+  }
+  
+  .ansik-logo-wrap {
+    bottom: 30px;
+    right: 30px;
+    width: 65px;
+  }
+}
+
+/* =========================================================
+   7. 스크롤 인터랙션 (Blur Fade-In Entrance)
+   ========================================================= */
+.reveal-element {
+  opacity: 0;
+  filter: blur(16px); /* 블러처리되었다가 잉크처럼 번지며 피어나는 느낌 */
+  transform: translateY(40px); /* 아래에서 위로 부드럽게 상승 */
+  transition: opacity 1.4s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 1.4s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, filter, transform;
+}
+
+.reveal-element.is-visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+
+/* 순차적인 등장(Staggered Delay)을 위한 딜레이 토큰 */
+.reveal-element.delay-1 { transition-delay: 180ms; }
+.reveal-element.delay-2 { transition-delay: 360ms; }
+.reveal-element.delay-3 { transition-delay: 540ms; }
+
+/* ============ ATTRACTION SECTION ============ */
+.history-attraction-section {
+  padding: 10rem 0;
+  background: linear-gradient(to bottom, #F9F7F2, #EFECE4);
+  color: #2B1A13;
+  overflow: hidden;
+  position: relative;
+}
+
+.attraction-container {
+  width: 90%;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.attraction-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.attraction-header h2 {
+  font-family: 'Cormorant Garamond', 'Noto Serif TC', serif;
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  color: #2B1A13;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.attraction-header p {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 1.2rem;
+  opacity: 0.8;
+  color: #5A4A42;
+}
+
+.attraction-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 3rem;
+}
+
+.attraction-item {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(43, 26, 19, 0.05);
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  cursor: pointer;
+  position: relative;
+}
+
+.attraction-item:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 25px 50px rgba(43, 26, 19, 0.12);
+}
+
+.attraction-img-wrap {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+}
+
+.attraction-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.attraction-item:hover .attraction-img {
+  transform: scale(1.1);
+}
+
+/* Glassmorphism gradient overlay */
+.attraction-img-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; width: 100%; height: 50%;
+  background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.attraction-item:hover .attraction-img-wrap::after {
+  opacity: 1;
+}
+
+.attraction-info {
+  padding: 2.5rem 2rem;
+  text-align: center;
+  background: #ffffff;
+  position: relative;
+  z-index: 2;
+}
+
+.attraction-info h3 {
+  font-family: 'Cormorant Garamond', 'Noto Serif TC', serif;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #2B1A13;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.attraction-item:hover .attraction-info h3 {
+  color: #8C705F;
+}
+
+.attraction-info p {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .history-attraction-section {
+    padding: 6rem 0;
+  }
+  .attraction-header h2 {
+    font-size: 2.5rem;
+  }
+  .attraction-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+

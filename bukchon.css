@@ -1,0 +1,144 @@
+/* =========================================================
+   북촌빈관 by 락고재 페이지
+========================================================= */
+
+body.bukchon-page {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  overflow-x: hidden;
+}
+
+/* =========================================================
+   HERO - 북촌빈관
+   배경: 올리브 그린 / 기와 스타일 3분할 레이아웃
+========================================================= */
+.bukchon-hero {
+  width: 100%;
+  min-height: 100vh;
+  padding: var(--header-h) clamp(20px, 3.1vw, var(--gutter)) 0;
+  background: #3D4A2F;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.bukchon-hero__stage {
+  position: relative;
+  width: 100%;
+  max-width: var(--container);
+  height: calc(100vh - var(--header-h));
+  min-height: 520px;
+}
+
+.bukchon-hero__media {
+  position: absolute;
+  margin: 0;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.bukchon-hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 왼쪽 — 상단 기준, 중간 높이 */
+.bukchon-hero__media--large {
+  left: 0;
+  top: 0;
+  width: 31%;
+  height: 84%;
+}
+
+/* 가운데 — 가장 높고 중심축 */
+.bukchon-hero__media--middle {
+  left: 34.5%;
+  top: 5%;
+  width: 31%;
+  height: 92%;
+}
+
+/* 오른쪽 — 살짝 내려서 리듬감 */
+.bukchon-hero__media--right {
+  right: 0;
+  top: 2%;
+  width: 31%;
+  height: 80%;
+}
+
+/* 타이틀: 왼쪽 이미지 아래 올리브 배경 위 */
+.bukchon-hero__title {
+  position: absolute;
+  left: 0;
+  bottom: 3%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-heading);
+  font-size: clamp(38px, 4.8vw, 62px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: 0;
+  color: var(--color-white);
+  white-space: nowrap;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media (max-width: 1024px) {
+  .bukchon-hero {
+    padding-top: var(--header-h-mobile);
+  }
+  .bukchon-hero__stage {
+    height: calc(100vh - var(--header-h-mobile));
+    min-height: 500px;
+  }
+  .bukchon-hero__title {
+    font-size: clamp(38px, 5.45vw, 54px);
+  }
+}
+
+@media (max-width: 760px) {
+  .bukchon-hero {
+    min-height: auto;
+    padding: var(--header-h-mobile) var(--gutter) 56px;
+    overflow: visible;
+  }
+  .bukchon-hero__stage {
+    height: auto;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .bukchon-hero__media,
+  .bukchon-hero__title {
+    position: static;
+    width: 100% !important;
+    height: auto !important;
+  }
+  .bukchon-hero__media--large {
+    aspect-ratio: 3 / 4;
+  }
+  .bukchon-hero__media--middle {
+    aspect-ratio: 3 / 4;
+  }
+  .bukchon-hero__media--right {
+    grid-column: 1 / -1;
+    aspect-ratio: 16 / 9;
+  }
+  .bukchon-hero__title {
+    grid-column: 1 / -1;
+    margin-top: 8px;
+    font-size: clamp(34px, 11vw, 48px);
+    white-space: normal;
+    color: var(--color-white);
+  }
+}
+
+@media (max-width: 480px) {
+  .bukchon-hero { padding-inline: 20px; }
+  .bukchon-hero__stage { gap: 16px; }
+}

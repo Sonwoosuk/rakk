@@ -1,0 +1,597 @@
+@import "reservation.css";
+
+/* =========================================================
+   락고재 파인 다이닝 - 독창적 프리미엄 디자인 시스템
+   ========================================================= */
+
+body.dining-page {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  overflow-x: hidden;
+}
+
+/* =========================================================
+   1. HERO SECTION: Full-width Immersive Parallax Style
+   ========================================================= */
+.dn-hero {
+  position: relative;
+  width: 100%;
+  height: 85vh;
+  min-height: 600px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-green);
+}
+
+.dn-hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 1;
+  transform: scale(1.05);
+  transition: transform 2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.dn-hero.is-revealed .dn-hero__bg {
+  transform: scale(1);
+}
+
+.dn-hero__overlay {
+  display: none;
+}
+
+.dn-hero__content {
+  position: relative;
+  z-index: 3;
+  max-width: 800px;
+  width: 90%;
+  text-align: center;
+  padding: 60px 40px;
+  border: none;
+  backdrop-filter: blur(2px);
+  background: rgba(61, 74, 47, 0.85); /* 올리브 그린(--color-green) 반투명 배경 */
+  box-sizing: border-box;
+}
+
+.dn-hero__title {
+  font-family: var(--font-heading);
+  font-size: clamp(36px, 4.5vw, 54px);
+  font-weight: 500;
+  color: var(--color-white);
+  letter-spacing: -0.02em;
+  margin: 0 0 15px 0;
+  line-height: 1.2;
+}
+
+.dn-hero__hanja {
+  font-family: var(--font-hanja);
+  font-size: 24px;
+  color: var(--color-tan);
+  letter-spacing: 0.25em;
+  margin-bottom: 30px;
+  font-weight: 400;
+}
+
+.dn-hero__desc p {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 2;
+  color: #ECE7DF;
+  margin: 0 0 18px 0;
+  word-break: keep-all;
+}
+
+.dn-hero__desc p:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================================================
+   2. PHILOSOPHY SECTION: Centered Intro & Staggered Gallery
+   ========================================================= */
+.dn-philosophy {
+  background: var(--color-white);
+  padding: 160px 0;
+  position: relative;
+}
+
+.dn-philosophy__intro {
+  max-width: 720px;
+  margin: 0 auto 100px;
+  text-align: center;
+  padding: 0 var(--gutter);
+  box-sizing: border-box;
+}
+
+.dn-philosophy__label {
+  font-family: var(--font-en);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-tan);
+  margin-bottom: 20px;
+  display: block;
+}
+
+.dn-philosophy__title {
+  font-family: var(--font-heading);
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 600;
+  color: var(--color-green);
+  line-height: 1.3;
+  margin: 0 0 35px 0;
+  letter-spacing: -0.01em;
+}
+
+.dn-philosophy__desc {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.95;
+  color: #555;
+  word-break: keep-all;
+}
+
+/* Staggered Gallery */
+.dn-philosophy__gallery {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  box-sizing: border-box;
+  gap: 60px;
+}
+
+.dn-philosophy__img-wrapper-left {
+  flex: 0 0 54%;
+  height: 420px;
+  overflow: hidden;
+  position: relative;
+  background-color: #ECE7DF;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.04);
+}
+
+.dn-philosophy__img-wrapper-right {
+  flex: 0 0 38%;
+  height: 520px;
+  overflow: hidden;
+  position: relative;
+  transform: translateY(-50px); /* 비대칭 레이아웃 */
+  background-color: #E2DBD0;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.06);
+}
+
+.dn-philosophy__gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 1.8s ease;
+}
+
+.dn-philosophy__gallery img:hover {
+  transform: scale(1.03);
+}
+
+.dn-philosophy__hanja {
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  font-family: var(--font-hanja);
+  font-size: clamp(60px, 8vw, 120px);
+  color: rgba(61, 74, 47, 0.03);
+  font-weight: 400;
+  pointer-events: none;
+}
+
+/* =========================================================
+   3. MENU COURSES SECTION: Staggered Elegant Cards
+   ========================================================= */
+.dn-courses {
+  background: var(--color-paper);
+  padding: 160px 0;
+}
+
+.dn-courses__inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  box-sizing: border-box;
+}
+
+.dn-courses__header {
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+.dn-courses__label {
+  font-family: var(--font-en);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-tan);
+  margin-bottom: 20px;
+  display: block;
+}
+
+.dn-courses__title {
+  font-family: var(--font-heading);
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 600;
+  color: var(--color-green);
+  margin: 0;
+}
+
+/* Cards Row */
+.dn-courses__grid {
+  display: flex;
+  gap: 50px;
+}
+
+.dn-course-card {
+  flex: 1;
+  background: var(--color-white);
+  border: 1px solid rgba(61, 74, 47, 0.15);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.02);
+  display: flex;
+  flex-direction: column;
+}
+
+.dn-course-card__media {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  position: relative;
+  background-color: #E2DBD0;
+}
+
+.dn-course-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.dn-course-card__body {
+  padding: 50px 40px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.dn-course-card__title-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(176, 154, 120, 0.2);
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.dn-course-card__name {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--color-green);
+  margin: 0;
+}
+
+.dn-course-card__subname {
+  font-family: var(--font-en);
+  font-size: 13px;
+  color: var(--color-tan);
+  font-style: italic;
+}
+
+.dn-course-card__list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 40px 0;
+}
+
+.dn-course-card__item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: #4A4A4A;
+}
+
+.dn-course-card__item-label {
+  font-weight: 600;
+  color: var(--color-green);
+  width: 90px;
+  flex-shrink: 0;
+}
+
+.dn-course-card__item-desc {
+  font-weight: 300;
+  color: #666;
+}
+
+.dn-course-card__desc {
+  margin-top: auto;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--color-tan);
+  border-top: 1px dashed rgba(176, 154, 120, 0.2);
+  padding-top: 25px;
+  word-break: keep-all;
+}
+
+/* =========================================================
+   4. PRIVATE ATMOSPHERE: Full-bleed Showcase Block
+   ========================================================= */
+.dn-private {
+  position: relative;
+  width: 100%;
+  padding: 180px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-green);
+}
+
+.dn-private__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.dn-private__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(61, 74, 47, 0.75);
+  z-index: 2;
+}
+
+.dn-private__content {
+  position: relative;
+  z-index: 3;
+  max-width: 800px;
+  width: 90%;
+  text-align: center;
+  color: var(--color-white);
+  padding: 0 var(--gutter);
+  box-sizing: border-box;
+}
+
+.dn-private__label {
+  font-family: var(--font-en);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-tan);
+  margin-bottom: 25px;
+  display: block;
+}
+
+.dn-private__title {
+  font-family: var(--font-heading);
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0 0 30px 0;
+  letter-spacing: -0.01em;
+}
+
+.dn-private__desc {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.95;
+  color: #ECE7DF;
+  word-break: keep-all;
+}
+
+/* =========================================================
+   5. RESERVATION SECTION
+   ========================================================= */
+.dn-reservation {
+  background-color: #FFFFFF;
+  padding: 120px 0 160px;
+}
+
+.dn-reservation .res-title {
+  color: var(--color-green);
+}
+
+.dn-reservation .res-bar {
+  border-top: 1px solid rgba(61, 74, 47, 0.25);
+  border-bottom: 1px solid rgba(61, 74, 47, 0.25);
+}
+
+.dn-reservation .custom-select-wrapper {
+  position: relative;
+}
+
+.dn-reservation .custom-select-trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 2;
+}
+
+.dn-reservation .custom-options {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  width: 100%;
+  background-color: #FFFFFF;
+  border: 1px solid #EAEAEA;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  border-radius: 8px;
+  list-style: none;
+  padding: 8px 0;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 100;
+}
+
+.dn-reservation .custom-select-wrapper.is-open .custom-options {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dn-reservation .custom-select-wrapper.is-open .res-icon-chevron {
+  transform: rotate(180deg);
+}
+
+.dn-reservation .res-icon-chevron {
+  transition: transform 0.3s ease;
+}
+
+.dn-reservation .custom-option {
+  padding: 12px 20px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: #4A4A4A;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dn-reservation .custom-option:hover {
+  background-color: #FAF5EE;
+  color: #3D4A2F;
+}
+
+/* Flatpickr Custom Theme */
+.flatpickr-calendar {
+  font-family: var(--font-body) !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06) !important;
+  border: 1px solid #EAEAEA !important;
+  border-radius: 8px !important;
+}
+.flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange {
+  background: #3D4A2F !important;
+  border-color: #3D4A2F !important;
+}
+
+/* =========================================================
+   6. REVEAL ANIMATIONS
+   ========================================================= */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(30px);
+  filter: blur(10px);
+  transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+              transform 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+              filter 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: opacity, transform, filter;
+}
+
+.reveal-item.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* =========================================================
+   7. RESPONSIVE
+   ========================================================= */
+@media (max-width: 1024px) {
+  .dn-hero {
+    height: 70vh;
+  }
+  .dn-philosophy__gallery {
+    gap: 40px;
+  }
+  .dn-philosophy__img-wrapper-right {
+    height: 440px;
+    transform: translateY(-30px);
+  }
+  .dn-courses__grid {
+    gap: 30px;
+  }
+  .dn-course-card__body {
+    padding: 40px 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dn-hero {
+    height: 60vh;
+    min-height: 480px;
+  }
+  .dn-hero__content {
+    padding: 40px 20px;
+  }
+  
+  .dn-philosophy {
+    padding: 100px 0;
+  }
+  .dn-philosophy__intro {
+    margin-bottom: 60px;
+  }
+  .dn-philosophy__gallery {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .dn-philosophy__img-wrapper-left,
+  .dn-philosophy__img-wrapper-right {
+    flex: none;
+    width: 100%;
+    height: 320px;
+    transform: none; /* 모바일에서는 비대칭 정렬 해제 */
+  }
+
+  .dn-courses {
+    padding: 100px 0;
+  }
+  .dn-courses__header {
+    margin-bottom: 60px;
+  }
+  .dn-courses__grid {
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .dn-private {
+    padding: 120px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .dn-hero {
+    height: 50vh;
+    min-height: 360px;
+  }
+  .dn-hero__title {
+    font-size: clamp(28px, 8vw, 40px);
+  }
+  .dn-hero__hanja {
+    font-size: 18px;
+  }
+  .dn-philosophy {
+    padding: 72px 0;
+  }
+  .dn-courses {
+    padding: 72px 0;
+  }
+  .dn-reservation {
+    padding: 72px 0 100px;
+  }
+}

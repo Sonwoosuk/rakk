@@ -1,0 +1,150 @@
+/* =========================================================
+   RESERVATION SECTION
+========================================================= */
+.choga-reservation {
+  background-color: #FFFFFF;
+  padding: 100px 0 160px; /* 다이닝과 푸터 사이 여백 */
+}
+
+.reservation-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.res-title {
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 600;
+  color: #A38C76; /* 이미지와 유사한 브라운 계열 */
+  margin-bottom: 40px;
+  letter-spacing: -0.02em;
+}
+
+.res-bar-wrap {
+  width: 100%;
+}
+
+.res-bar {
+  display: flex;
+  align-items: stretch;
+  border-top: 1px solid #D4C4B7;
+  border-bottom: 1px solid #D4C4B7;
+  height: 60px;
+  background-color: #FAF5EE; /* 항목들의 크림색 배경 */
+}
+
+.res-item {
+  position: relative;
+  flex: 1;
+  border-right: 2px solid #FFFFFF; /* 항목 사이의 흰색 구분선 */
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  min-width: 0;
+}
+
+.res-item:nth-last-child(2) {
+  /* 예약버튼 이전(다이닝) 항목은 오른쪽 구분선 없음 */
+  border-right: none;
+}
+
+.res-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* Chrome/Safari 버그 방지용 (date input 클릭 시 달력 무조건 뜨게) */
+.res-input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.res-display {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.res-text {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: #4A4A4A;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.res-icon {
+  width: 18px;
+  height: 18px;
+  color: #4A4A4A;
+  flex-shrink: 0;
+  margin-left: 10px;
+}
+
+.res-icon-chevron {
+  width: 16px;
+  height: 16px;
+  color: #4A4A4A;
+  flex-shrink: 0;
+  margin-left: 10px;
+}
+
+.res-submit-btn {
+  flex: 0 0 160px;
+  background-color: #3D4A2F;
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.res-submit-btn:hover {
+  background-color: #2b3521;
+}
+
+@media (max-width: 768px) {
+  .res-bar {
+    flex-direction: column;
+    height: auto;
+    border-bottom: none;
+  }
+  
+  .res-item {
+    width: 100%;
+    height: 54px;
+    border-right: none;
+    border-bottom: 1px solid #D4C4B7;
+    padding: 0 16px;
+  }
+  
+  .res-item:nth-last-child(2) {
+    border-bottom: none;
+  }
+  
+  .res-submit-btn {
+    width: 100%;
+    height: 54px;
+    flex: none;
+    font-size: 15px;
+    border-bottom: 1px solid #D4C4B7;
+  }
+}

@@ -1,0 +1,755 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>락고재 한옥 스테이</title>
+
+  <!-- 프리커넥트: 외부 도메인 연결 마련 (DNS+TCP 미리 연결) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+
+  <!-- 첫 화면 히어로 이미지 preload (가장 먼저 보이는 이미지) -->
+  <link rel="preload" as="image" href="images/hero01.jpg" />
+
+  <!-- Pretendard (비렌더블로킹: media print 트릭) -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css"
+    media="print"
+    onload="this.media='all'"
+  />
+  <noscript>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" />
+  </noscript>
+
+  <!-- Google Fonts: Cormorant + Noto Serif TC (비렌더블로킹) -->
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Noto+Serif+TC:wght@200;300;400;500;700&display=swap"
+    media="print"
+    onload="this.media='all'"
+  />
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Noto+Serif+TC:wght@200;300;400;500;700&display=swap" />
+  </noscript>
+
+  <link rel="stylesheet" href="style.css" />
+  <script>if(sessionStorage.getItem('rk-intro-shown')){document.documentElement.classList.add('intro-skip');}</script>
+  <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=723e60a95d780eae47e903930abf3f5f"></script>
+</head>
+<body>
+
+  <!-- ============ INTRO OVERLAY ============ -->
+  <div id="intro" aria-hidden="true">
+    <div id="intro-bg"></div>
+    <div id="intro-inner">
+      <div id="intro-logo">
+        <img src="images/footer-logo.png" class="intro-logo-img" alt="락고재" />
+      </div>
+      <div id="intro-line-wrap" aria-hidden="true">
+        <span id="intro-line-bar"></span>
+      </div>
+      <div id="intro-tagline">S T A Y &nbsp;&nbsp; &amp; &nbsp;&nbsp; H E R I T A G E</div>
+    </div>
+  </div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="header" id="header">
+    <div class="header__inner container">
+      <a href="#" class="header__logo" aria-label="락고재 홈">
+        <img src="logo.png" alt="RAKKOJAE" />
+      </a>
+
+      <nav class="nav" id="nav">
+        <div class="nav__logo">
+          <img src="logo.png" alt="RAKKOJAE" />
+        </div>
+        <ul class="nav__list">
+          <li><a href="history.html">락고재 100년</a></li>
+        <li class="nav-item-dropdown">
+          <a href="kiwa.html" class="nav-dropdown-trigger">
+            락고재 한옥 스테이
+            <svg class="nav-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </a>
+          <ul class="nav-submenu">
+            <li><a href="kiwa.html">락고재 한옥 스테이 - 기와본관</a></li>
+            <li><a href="choga.html">락고재 한옥 스테이 - 초가별관</a></li>
+            <li><a href="seoul.html">락고재 서울 본관</a></li>
+            <li><a href="bukchon.html">북촌빈관 by 락고재</a></li>
+            <li><a href="service.html">머무름을 위한 배려</a></li>
+          </ul>
+        </li>
+          <li><a href="culture.html">락고재 컬쳐 라운지</a></li>
+          <li><a href="dining.html">락고재 한식 다이닝</a></li>
+          <li><a href="http://rkjcf.or.kr/" target="_blank" rel="noopener">락고재 문화재단</a></li>
+        </ul>
+      </nav>
+
+      <div class="header__util">
+        <button class="util__search" aria-label="검색">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6">
+            <circle cx="11" cy="11" r="7" />
+            <line x1="16.5" y1="16.5" x2="21" y2="21" stroke-linecap="round" />
+          </svg>
+        </button>
+        <a href="#" class="util__link">로그인</a>
+        <span class="util__divider" aria-hidden="true"></span>
+        <a href="#" class="util__link util__lang">언어</a>
+
+        <button class="util__toggle" id="navToggle" aria-label="메뉴 열기" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <!-- 서치 바 드롭다운 -->
+      <div class="header-search-bar" id="headerSearchBar" role="search" aria-hidden="true">
+        <div class="header-search-inner">
+          <div class="header-search-hint" id="headerSearchHint"></div>
+          <input type="search" class="header-search-input" id="headerSearchInput"
+                 placeholder="검색어를 입력하세요" autocomplete="off" aria-label="검색" />
+          <button class="header-search-close" id="headerSearchClose" aria-label="검색 닫기">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <div class="hero__slides" id="heroSlides">
+      <div class="hero__slide is-active" data-index="0">
+        <div class="hero__media placeholder" data-src="images/hero01.jpg" data-label="여기 이미지 01"></div>
+      </div>
+      <div class="hero__slide" data-index="1">
+        <div class="hero__media placeholder" data-src="images/hero-02.jpg" data-label="여기 이미지 02"></div>
+      </div>
+      <div class="hero__slide" data-index="2">
+        <div class="hero__media placeholder" data-src="images/hero-03.jpg" data-label="여기 이미지 03"></div>
+      </div>
+      <div class="hero__slide" data-index="3">
+        <div class="hero__media placeholder" data-src="images/hero-04.jpg" data-label="여기 이미지 04"></div>
+      </div>
+      <div class="hero__slide" data-index="4">
+        <div class="hero__media placeholder" data-src="images/hero-05.jpg" data-label="여기 이미지 05"></div>
+      </div>
+      <div class="hero__slide" data-index="5">
+        <div class="hero__media placeholder" data-src="images/hero-06.jpg" data-label="여기 이미지 06"></div>
+      </div>
+      <div class="hero__slide" data-index="6">
+        <div class="hero__media placeholder" data-src="images/hero-07.jpg" data-label="여기 이미지 07"></div>
+      </div>
+    </div>
+
+    <div class="hero__body container">
+      <div class="hero__copy">
+        <h1 class="hero__title">락고재 한옥 스테이</h1>
+        <p class="hero__desc">
+          느린 시간이 머무는 곳, 오래된 한옥의 결을 따라<br />
+          하루를 천천히 채워가는 락고재의 한옥 스테이입니다.
+        </p>
+
+        <!-- 슬라이드 인디케이터 -->
+        <div class="hero__indicator">
+          <span class="indicator__current" id="slideCurrent">01</span>
+          <div class="indicator__track">
+            <span class="indicator__progress" id="slideProgress"></span>
+          </div>
+          <span class="indicator__total" id="slideTotal">07</span>
+          <div class="indicator__arrows">
+            <button class="arrow arrow--prev" id="slidePrev" aria-label="이전 슬라이드">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5">
+                <polyline points="15 5 8 12 15 19" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+            <button class="arrow arrow--next" id="slideNext" aria-label="다음 슬라이드">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5">
+                <polyline points="9 5 16 12 9 19" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="hero__actions">
+          <a href="#collectionKiwa" class="btn btn--primary">예약</a>
+          <a href="history.html" class="btn btn--ghost">락고재 100년</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MARQUEE STRIP ============ -->
+  <section class="marquee-section" id="marqueeSection" aria-hidden="true">
+
+    <!-- 띠 1 : 왼쪽 → 오른쪽 -->
+    <div class="marquee-strip marquee-strip--ltr">
+      <div class="marquee-track" id="marqueeTrackTop">
+        <!-- 이미지 그룹 A -->
+        <div class="marquee-group">
+          <div class="marquee-item"><img src="images/line1.jpg" alt="" class="marquee-img" /></div>
+          <div class="marquee-item"><img src="images/line1.jpg" alt="" class="marquee-img" /></div>
+          <div class="marquee-item"><img src="images/line1.jpg" alt="" class="marquee-img" /></div>
+        </div>
+        <!-- 이미지 그룹 B (무한루프용 복사본) -->
+        <div class="marquee-group" aria-hidden="true">
+          <div class="marquee-item"><img src="images/line1.jpg" alt="" class="marquee-img" /></div>
+          <div class="marquee-item"><img src="images/line1.jpg" alt="" class="marquee-img" /></div>
+          <div class="marquee-item"><img src="images/line1.jpg" alt="" class="marquee-img" /></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 띠 2 : 오른쪽 → 왼쪽 -->
+    <div class="marquee-strip marquee-strip--rtl">
+      <div class="marquee-track" id="marqueeTrackBottom">
+        <!-- 이미지 그룹 A -->
+        <div class="marquee-group">
+          <div class="marquee-item"><img src="images/line2.jpg" alt="" class="marquee-img" /></div>
+          <div class="marquee-item"><img src="images/line2.jpg" alt="" class="marquee-img" /></div>
+          <div class="marquee-item"><img src="images/line2.jpg" alt="" class="marquee-img" /></div>
+        </div>
+        <!-- 이미지 그룹 B (무한루프용 복사본) -->
+        <div class="marquee-group" aria-hidden="true">
+          <div class="marquee-item"><img src="images/line2.jpg" alt="" class="marquee-img" /></div>
+          <div class="marquee-item"><img src="images/line2.jpg" alt="" class="marquee-img" /></div>
+          <div class="marquee-item"><img src="images/line2.jpg" alt="" class="marquee-img" /></div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============ STORY SECTION ============ -->
+  <section class="story-section" id="storySection">
+
+    <!-- ── 이미지 영역: JS가 동적으로 이미지 배치 ── -->
+    <div class="story-stage" id="storyStage"></div>
+
+    <!-- ── 고정 텍스트 패널 ── -->
+    <div class="story-copy-wrap">
+      <div class="story-copy is-active">
+        <h2 class="story-title">락고재의 100년<br />(브랜드 스토리)</h2>
+        <p class="story-desc">
+          옛것을 누리는 맑고 편안한 마음이 드는 곳, 락고재 한옥 컬렉션.<br />
+          1994년 우리나라 최초의 고택 체험을 시작으로<br />
+          한옥의 변천과 진화를 지속적으로 연구하고 있습니다.
+        </p>
+        <a href="history.html" class="story-btn">더 알아보기</a>
+      </div>
+    </div>
+
+    <!-- ── 네비게이션 ── -->
+    <button class="story-nav story-nav--prev" id="storyPrev" aria-label="이전 슬라이드">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5">
+        <polyline points="15 5 8 12 15 19" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+    <button class="story-nav story-nav--next" id="storyNext" aria-label="다음 슬라이드">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5">
+        <polyline points="9 5 16 12 9 19" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+
+  </section>
+
+  <!-- ============ COLLECTION TITLE SECTION ============ -->
+  <section class="collection-title-section">
+    <div class="collection-title-wrap">
+      <h2 class="collection-main-title">락고재 한옥 컬렉션</h2>
+      <p class="collection-sub-title">옛것을 즐기는 집</p>
+    </div>
+  </section>
+
+  <!-- ============ FIXED COLLECTION SIDE NAVIGATION ============ -->
+  <div class="collection-side-nav" id="collectionSideNav">
+    <div class="side-nav-hanja">
+      <span class="hanja-char char-rak">樂</span>
+      <span class="hanja-char char-ko">古</span>
+      <span class="hanja-char char-ja">齋</span>
+    </div>
+    <ul class="side-nav-list">
+      <li class="side-nav-item" data-target="collectionKiwa">
+        <a href="#collectionKiwa">
+          <span class="side-nav-bullet"></span>
+          <span class="side-nav-text">락고재 하회 한옥 호텔 - 기와 본관</span>
+        </a>
+      </li>
+      <li class="side-nav-item" data-target="collectionChoga">
+        <a href="#collectionChoga">
+          <span class="side-nav-bullet"></span>
+          <span class="side-nav-text">락고재 하회 한옥 호텔 - 초가 별관</span>
+        </a>
+      </li>
+      <li class="side-nav-item" data-target="collectionBukchon">
+        <a href="#collectionBukchon">
+          <span class="side-nav-bullet"></span>
+          <span class="side-nav-text">락고재 서울 북촌한옥마을</span>
+        </a>
+      </li>
+      <li class="side-nav-item" data-target="collectionLounge">
+        <a href="#collectionLounge">
+          <span class="side-nav-bullet"></span>
+          <span class="side-nav-text">락고재 컬쳐 라운지</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ============ HOTEL INTRO SECTION: 기와 본관 ============ -->
+  <section class="hotel-intro-section" id="collectionKiwa">
+    <!-- 배경 이미지 영역 -->
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/collection-01.jpg" alt="" class="hotel-intro-bg lazy-img" />
+    <div class="hotel-intro-overlay"></div>
+    <div class="hotel-intro-content">
+      <div class="hotel-intro-header">
+        <h3 class="hotel-intro-title">락고재 하회 한옥 호텔 - 기와 본관</h3>
+        <p class="hotel-intro-address">경북 안동시 풍천면 전서로 186-20</p>
+      </div>
+      <div class="hotel-intro-actions">
+        <a href="kiwa.html" class="hotel-intro-btn btn-space">공간 이야기</a>
+        <a href="kiwa.html#kiwaRoomsSection" class="hotel-intro-btn btn-room">객실 정보</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOTEL INTRO SECTION: 초가 별관 ============ -->
+  <section class="hotel-intro-section" id="collectionChoga">
+    <!-- 배경 이미지 영역 -->
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/collection-02.jpg" alt="" class="hotel-intro-bg lazy-img" />
+    <div class="hotel-intro-overlay"></div>
+    <div class="hotel-intro-content">
+      <div class="hotel-intro-header">
+        <h3 class="hotel-intro-title">락고재 하회 한옥 호텔 - 초가 별관</h3>
+        <p class="hotel-intro-address">경북 안동시 풍천면 하외 강변길 51</p>
+      </div>
+      <div class="hotel-intro-actions">
+        <a href="choga.html" class="hotel-intro-btn btn-space">공간 이야기</a>
+        <a href="choga.html#chogaRoomsSection" class="hotel-intro-btn btn-room">객실 정보</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOTEL INTRO SECTION: 서울 북촌한옥마을 ============ -->
+  <section class="hotel-intro-section" id="collectionBukchon">
+    <!-- 배경 이미지 영역 -->
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/collection-03.jpg" alt="" class="hotel-intro-bg lazy-img" />
+    <div class="hotel-intro-overlay"></div>
+    <div class="hotel-intro-content">
+      <div class="hotel-intro-header">
+        <h3 class="hotel-intro-title">락고재 서울 북촌한옥마을</h3>
+        <p class="hotel-intro-address">서울 종로구 가회동</p>
+      </div>
+      <div class="hotel-intro-actions">
+        <a href="seoul.html" class="hotel-intro-btn btn-space">서울 본관 · 공간 이야기</a>
+        <a href="seoul.html#seoulRoomsSection" class="hotel-intro-btn btn-room">서울 본관 · 객실 정보</a>
+        <a href="bukchon.html" class="hotel-intro-btn btn-space">북촌빈관 · 공간 이야기</a>
+        <a href="bukchon.html#bukchonRoomsSection" class="hotel-intro-btn btn-room">북촌빈관 · 객실 정보</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOTEL INTRO SECTION: 락고재 컬쳐 라운지 ============ -->
+  <section class="hotel-intro-section" id="collectionLounge">
+    <!-- 배경 이미지 영역 -->
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/collection-04.jpg" alt="" class="hotel-intro-bg lazy-img" />
+    <div class="hotel-intro-overlay"></div>
+    <div class="hotel-intro-content">
+      <div class="hotel-intro-header">
+        <h3 class="hotel-intro-title">락고재 컬쳐 라운지</h3>
+        <p class="hotel-intro-address">서울 종로구 가회동</p>
+      </div>
+      <div class="hotel-intro-actions">
+        <a href="culture.html" class="hotel-intro-btn btn-space">공간 이야기</a>
+        <a href="culture.html#experienceReservation" class="hotel-intro-btn btn-room">체험 예약 가능 여부 확인</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DINING SECTION ============ -->
+  <section class="dining-section">
+    <div class="dining-container container">
+      <!-- 왼쪽 이미지 영역 (사용자 이미지 경로: images/dining.jpg) -->
+      <div class="dining-media-wrap">
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/dining.jpg" alt="한식 다이닝" class="dining-img lazy-img" />
+      </div>
+      
+      <!-- 오른쪽 소개 영역 -->
+      <div class="dining-info-wrap">
+        <div class="dining-header">
+          <h2 class="dining-title">한식 다이닝</h2>
+          <div class="dining-desc-wrap">
+            <p class="dining-desc-primary">한국의 맛을 담은 다이닝</p>
+            <p class="dining-desc-secondary">다이닝 예약</p>
+          </div>
+        </div>
+        
+        <div class="dining-actions">
+          <a href="dining.html" class="dining-btn">예약 가능 여부 확인</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MOMENTS SECTION ============ -->
+  <section class="moments-section">
+    <div class="moments-container container">
+      <h2 class="moments-title">고요한 순간들</h2>
+      
+      <div class="moments-grid">
+        <!-- 카드 1: 객실 -->
+        <div class="moment-card">
+          <div class="moment-card-media">
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/moments-01.jpg" alt="객실" class="moment-card-img lazy-img" />
+          </div>
+          <div class="moment-card-info">
+            <h3 class="moment-card-title"><span class="hanja">客</span> 객실</h3>
+            <p class="moment-card-desc">전통 한옥의 아름다움과 현대적인 편안함이 공존하는 공간</p>          </div>
+        </div>
+
+        <!-- 카드 2: 다이닝 -->
+        <div class="moment-card">
+          <div class="moment-card-media">
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/moments-02.jpg" alt="다이닝" class="moment-card-img lazy-img" />
+          </div>
+          <div class="moment-card-info">
+            <h3 class="moment-card-title"><span class="hanja">食</span> 다이닝</h3>
+            <p class="moment-card-desc">수운잡방의 전통과 정성이 담긴 안동의 미식 문화를 만나는 시간</p>          </div>
+        </div>
+
+        <!-- 카드 3: 문화 체험 -->
+        <div class="moment-card">
+          <div class="moment-card-media">
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/moments-03.jpg" alt="문화 체험" class="moment-card-img lazy-img" />
+          </div>
+          <div class="moment-card-info">
+            <h3 class="moment-card-title"><span class="hanja">藝</span> 문화 체험</h3>
+            <p class="moment-card-desc">한국의 전통과 일상을 가까이에서 깊이 있게 경험하는 시간</p>          </div>
+        </div>
+
+        <!-- 카드 4: 정원 -->
+        <div class="moment-card">
+          <div class="moment-card-media">
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/moments-04.jpg" alt="정원" class="moment-card-img lazy-img" />
+          </div>
+          <div class="moment-card-info">
+            <h3 class="moment-card-title"><span class="hanja">庭</span> 정원</h3>
+            <p class="moment-card-desc">사계절의 풍경이 머무는 고요하고 여유로운 쉼의 공간</p>          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MAP SECTION ============ -->
+  <section class="map-section">
+    <div class="map-container container">
+      <!-- 섹션 헤더 -->
+      <div class="map-header">
+        <h2 class="map-section-title">오시는 길</h2>
+      </div>
+
+      <!-- 콘텐츠 그리드 (좌: 지점 정보 카드 & 탭 / 우: 지도 영역) -->
+      <div class="map-content-grid">
+        
+        <!-- 왼쪽 정보 패널 -->
+        <div class="map-info-panel">
+          <!-- 지점 선택 탭 버튼 -->
+          <div class="map-tabs">
+            <button class="map-tab-btn is-active" data-branch="seoul">락고재 서울</button>
+            <button class="map-tab-btn" data-branch="andong">락고재 안동</button>
+          </div>
+
+          <!-- 지점 상세 카드 컨테이너 -->
+          <div class="map-cards-wrapper">
+            
+            <!-- 서울 북촌 카드 -->
+            <div class="map-info-card is-active" id="card-seoul">
+              <h3 class="map-card-name">락고재 서울 본관 & 컬쳐 라운지</h3>
+              <ul class="map-details-list">
+                <li class="map-detail-item">
+                  <span class="detail-label">주소</span>
+                  <span class="detail-val">서울특별시 종로구 북촌로11길 22 (가회동 218)</span>
+                </li>
+                <li class="map-detail-item">
+                  <span class="detail-label">전화</span>
+                  <span class="detail-val"><a href="tel:02-742-3410" class="tel-link">02-742-3410</a></span>
+                </li>
+                <li class="map-detail-item">
+                  <span class="detail-label">이메일</span>
+                  <span class="detail-val">seoul@rakkojae.com</span>
+                </li>
+                <li class="map-detail-item">
+                  <span class="detail-label">지하철</span>
+                  <span class="detail-val">3호선 안국역 2번 출구 도보 10분 (북촌 초등학교 방향)</span>
+                </li>
+                <li class="map-detail-item">
+                  <span class="detail-label">버스</span>
+                  <span class="detail-val">종로02 마을버스 탑승 후 '북촌한옥마을.돈미약국' 정류장 하차 도보 2분</span>
+                </li>
+              </ul>
+              <div class="map-card-actions">
+                <a href="https://map.kakao.com/link/to/락고재 서울 본관,37.5802,126.9858" target="_blank" rel="noopener noreferrer" class="map-cta-btn">
+                  <span>카카오맵 길찾기</span>
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- 안동 하회 카드 -->
+            <div class="map-info-card" id="card-andong">
+              <h3 class="map-card-name">락고재 안동 하회 한옥 호텔</h3>
+              <ul class="map-details-list">
+                <li class="map-detail-item">
+                  <span class="detail-label">주소</span>
+                  <span class="detail-val">경상북도 안동시 풍천면 전서로 186-20 (하회마을 내)</span>
+                </li>
+                <li class="map-detail-item">
+                  <span class="detail-label">전화</span>
+                  <span class="detail-val"><a href="tel:054-853-5388" class="tel-link">054-853-5388</a></span>
+                </li>
+                <li class="map-detail-item">
+                  <span class="detail-label">이메일</span>
+                  <span class="detail-val">andong@rakkojae.com</span>
+                </li>
+                <li class="map-detail-item">
+                  <span class="detail-label">자차 이동</span>
+                  <span class="detail-val">네비게이션 '락고재 안동' 검색 (투숙객 차량은 하회마을 통제 차단기를 지나 한옥 호텔 안쪽까지 진입이 가능합니다.)</span>
+                </li>
+                <li class="map-detail-item">
+                  <span class="detail-label">대중교통</span>
+                  <span class="detail-val">안동역/터미널에서 210번 시내버스 승차 후 하회마을 종점 정류장 하차</span>
+                </li>
+              </ul>
+              <div class="map-card-actions">
+                <a href="https://map.kakao.com/link/to/락고재 안동 하회 한옥 호텔,36.5385,128.5147" target="_blank" rel="noopener noreferrer" class="map-cta-btn">
+                  <span>카카오맵 길찾기</span>
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 오른쪽 지도 영역 -->
+        <div class="map-viewport-wrapper" id="mapWrapper">
+          <div id="map" class="map-viewport"></div>
+          
+          <!-- API 로드 전 노출될 안내 플레이스홀더 (부드러운 페이드아웃 대응) -->
+          <div class="map-placeholder" id="mapPlaceholder">
+            <!-- 예술적인 맵 그래픽 벡터 백그라운드 -->
+            <div class="map-svg-bg">
+              <svg width="100%" height="100%" viewBox="0 0 600 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- 추상적인 지도 도서 그리드 라인 -->
+                <path d="M 50 0 L 50 450 M 150 0 L 150 450 M 250 0 L 250 450 M 350 0 L 350 450 M 450 0 L 450 450 M 550 0 L 550 450" stroke="rgba(163, 133, 92, 0.08)" stroke-width="1"/>
+                <path d="M 0 50 L 600 50 M 0 150 L 600 150 M 0 250 L 600 250 M 0 350 L 600 350" stroke="rgba(163, 133, 92, 0.08)" stroke-width="1"/>
+                <!-- 대각선 도로 시뮬레이션 -->
+                <path d="M 0 100 L 600 320 M 100 0 L 500 450 M 0 400 L 400 0" stroke="rgba(163, 133, 92, 0.12)" stroke-width="2" stroke-dasharray="4,4"/>
+                <!-- 둥근 구역 표시 -->
+                <circle cx="300" cy="225" r="120" stroke="rgba(163, 133, 92, 0.06)" stroke-width="2"/>
+                <circle cx="300" cy="225" r="70" stroke="rgba(163, 133, 92, 0.04)" stroke-width="1"/>
+                <!-- 강/물줄기 추상 아트 -->
+                <path d="M-10 350 C 150 360, 250 310, 400 370 C 500 410, 550 390, 610 420" stroke="rgba(176, 196, 222, 0.3)" stroke-width="24" stroke-linecap="round"/>
+              </svg>
+            </div>
+            
+            <div class="map-placeholder-content">
+              <div class="map-pin-container">
+                <svg class="map-pin-svg" viewBox="0 0 24 24" width="48" height="48" fill="none">
+                  <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22S19 14.25 19 9C19 5.13 15.87 2 12 2Z" fill="#A3855C" />
+                  <circle cx="12" cy="9" r="3.5" fill="#FFF5E6" />
+                </svg>
+                <div class="map-pin-pulse"></div>
+              </div>
+              <h4 class="map-placeholder-title">실시간 지도 연동 대기</h4>
+              <p class="map-placeholder-desc">
+                카카오 지도 API 키가 설정되면 실시간 인터랙티브 지도가 활성화됩니다.<br>
+                <span>(키 연동 방법은 HTML 파일 하단 주석 가이드를 참고하세요)</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    
+    <!-- 상단 푸터: 지점 상세 정보 및 탑버튼 (흰색 배경) -->
+    <div class="footer-upper">
+      <div class="footer-upper-inner container">
+        
+        <!-- 좌측 로고 영역 -->
+        <div class="footer-logo-col">
+          <div class="footer-logo">
+            <img src="images/footer-logo-01.png" class="footer-logo-img" alt="RAKKOJAE HANOK HOTELS" />
+          </div>
+        </div>
+
+        <!-- 중앙 주소 정보 영역 (5개 지점 컬럼) -->
+        <div class="footer-info-grid">
+          
+          <!-- 컬럼 1: 기와 본관 -->
+          <div class="footer-info-col">
+            <h4 class="info-col-title">락고재 하회 한옥호텔 - 기와 본관</h4>
+            <ul class="info-col-list">
+              <li>경상북도 안동시 풍천면 전서로 186-20</li>
+              <li>T. 010-8860-3410</li>
+              <li>E. andong@rkj.co.kr</li>
+              <li>사업자등록번호: 508-81-26196</li>
+              <li>대표: 안영환</li>
+            </ul>
+          </div>
+
+          <!-- 컬럼 2: 초가 별관 -->
+          <div class="footer-info-col">
+            <h4 class="info-col-title">락고재 하회 한옥호텔 - 초가 별관</h4>
+            <ul class="info-col-list">
+              <li>경상북도 안동시 풍천면 하회강변길 51</li>
+              <li>T. 010-8860-3410</li>
+              <li>E. andong@rkj.co.kr</li>
+              <li>사업자등록번호: 522-85-02280</li>
+              <li>대표: 안영환</li>
+            </ul>
+          </div>
+
+          <!-- 컬럼 3: 서울 본관 -->
+          <div class="footer-info-col">
+            <h4 class="info-col-title">락고재 서울 본관</h4>
+            <ul class="info-col-list">
+              <li>서울특별시 종로구 가회동 218</li>
+              <li>T. 02-742-3410</li>
+              <li>E. seoul@rkj.co.kr</li>
+              <li>사업자등록번호: 624-85-02868</li>
+              <li>대표: 안영환</li>
+            </ul>
+          </div>
+
+          <!-- 컬럼 4: 북촌빈관 -->
+          <div class="footer-info-col">
+            <h4 class="info-col-title">북촌빈관 by 락고재</h4>
+            <ul class="info-col-list">
+              <li>서울특별시 종로구 북촌로 11가길 10</li>
+              <li>T. 02-742-3410</li>
+              <li>E. seoul@rkj.co.kr</li>
+              <li>사업자등록번호: 395-85-01879</li>
+              <li>대표: 안영환</li>
+            </ul>
+          </div>
+
+          <!-- 컬럼 5: 컬쳐 라운지 -->
+          <div class="footer-info-col">
+            <h4 class="info-col-title">락고재 컬쳐 라운지</h4>
+            <ul class="info-col-list">
+              <li>서울특별시 종로구 북촌로11가길 16</li>
+              <li>T. 0507-1369-3411</li>
+              <li>E. culture@rakkojae.com</li>
+              <li>사업자등록번호: 439-17-00394</li>
+              <li>통신판매업: 제2022-서울종로-1668호</li>
+              <li>대표: 김예목</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 하단 푸터: 자회사, 로고, SNS (연한 회색 배경) -->
+    <div class="footer-lower">
+      <div class="footer-lower-inner container">
+        
+        <!-- 왼쪽: 자회사 바로가기 -->
+        <div class="footer-affiliate">
+          <span class="affiliate-label">자회사 바로가기</span>
+          <div class="affiliate-dropdown-wrap">
+            <select id="affiliateSelect" class="affiliate-select" aria-label="자회사 링크 선택">
+              <option value="" disabled selected>자회사 링크</option>
+              <option value="http://rkjcf.or.kr/">재단법인 락고재문화재단</option>
+              <option value="https://blog.naver.com/rakkojae">락고재 공식 블로그</option>
+              <option value="https://houseofheritage.kr/">하우스 오브 헤리티지</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 중앙 좌측: 미쉐린 가이드 선정 로고 -->
+        <div class="footer-michelin">
+          <div class="michelin-badge">
+            <img src="images/michelin.png" class="footer-michelin-img" alt="미쉐린 가이드 서울" />
+            <div class="michelin-desc-box">
+              <span class="michelin-badge-desc">‘미쉐린 가이드’ 선정 한옥 호텔</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 중앙 우측: 문화재단 로고/명칭 -->
+        <div class="footer-foundation">
+          <span class="foundation-hanja">樂古齋</span>
+          <span class="foundation-title">재단법인 락고재문화재단</span>
+        </div>
+
+        <!-- 오른쪽: SNS 아이콘 링크 -->
+        <div class="footer-sns">
+          <!-- 인스타그램 -->
+          <a href="https://www.instagram.com/rakkojae_seoul/" target="_blank" rel="noopener noreferrer" class="sns-link" aria-label="락고재 인스타그램">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+          <!-- 트위터 (X) -->
+          <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" class="sns-link" aria-label="락고재 트위터">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+            </svg>
+          </a>
+          <!-- 유튜브 -->
+          <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" class="sns-link" aria-label="락고재 유튜브">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+              <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </footer>
+
+  <!--
+    [지도 API 스크립트 가이드]
+    카카오 지도 API 연동 시 아래 주석을 풀고 "발급받은APPKEY" 부분에 자바스크립트 키를 넣으시면 활성화됩니다.
+  -->
+
+  <!-- ============ FLOATING BACK TO TOP BUTTON ============ -->
+  <button class="floating-top-btn" id="floatingTopBtn" aria-label="페이지 상단으로 이동">
+    <!-- 내부 화살표 아이콘 -->
+    <svg class="floating-top-btn__arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="12" y1="19" x2="12" y2="5"></line>
+      <polyline points="5 12 12 5 19 12"></polyline>
+    </svg>
+  </button>
+
+  <script src="search.js"></script>
+  <script src="script.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="login.js"></script>
+  <script src="mypage.js"></script>
+  <script src="translate.js"></script>
+</body>
+</html>

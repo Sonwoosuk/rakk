@@ -1,0 +1,1235 @@
+/* =========================================================
+   락고재 초가 별관 페이지
+========================================================= */
+
+body.choga-page {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  overflow-x: hidden;
+}
+
+/* =========================================================
+   HERO - 초가 별관 콜라주
+========================================================= */
+.choga-hero {
+  width: 100%;
+  min-height: 100vh;
+  padding: var(--header-h) clamp(20px, 3.1vw, var(--gutter)) 0;
+  background: var(--color-paper);
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.choga-hero__stage {
+  position: relative;
+  width: 100%;
+  max-width: var(--container);
+  height: calc(100vh - var(--header-h));
+  min-height: 520px;
+}
+
+.choga-hero__media {
+  position: absolute;
+  margin: 0;
+  overflow: hidden;
+  background: var(--color-placeholder-grey);
+}
+
+.choga-hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.choga-hero__media--large {
+  left: 0;
+  top: 9.9%;
+  width: 41.2%;
+  aspect-ratio: 727 / 882;
+}
+
+.choga-hero__media--middle {
+  left: 45%;
+  top: 5.4%;
+  width: 22.7%;
+  aspect-ratio: 401 / 536;
+}
+
+.choga-hero__media--right {
+  left: 73.8%;
+  top: 16.3%;
+  width: 26.1%;
+  aspect-ratio: 459 / 655;
+}
+
+.choga-hero__title {
+  position: absolute;
+  left: 42.7%;
+  top: 72.5%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-heading);
+  font-size: clamp(42px, 5.45vw, 68px);
+  font-weight: 400;
+  line-height: 1.03;
+  letter-spacing: 0;
+  color: var(--color-tan);
+  white-space: nowrap;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media (max-width: 1024px) {
+  .choga-hero {
+    padding-top: var(--header-h-mobile);
+  }
+
+  .choga-hero__stage {
+    height: calc(100vh - var(--header-h-mobile));
+    min-height: 500px;
+  }
+
+  .choga-hero__title {
+    font-size: clamp(38px, 5.45vw, 54px);
+  }
+}
+
+@media (max-width: 760px) {
+  .choga-hero {
+    min-height: auto;
+    padding: var(--header-h-mobile) var(--gutter) 56px;
+    overflow: visible;
+  }
+
+  .choga-hero__stage {
+    height: auto;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .choga-hero__media,
+  .choga-hero__title {
+    position: static;
+  }
+
+  .choga-hero__media--large {
+    grid-column: 1 / -1;
+    width: 100%;
+    aspect-ratio: 727 / 882;
+  }
+
+  .choga-hero__media--middle,
+  .choga-hero__media--right {
+    width: 100%;
+  }
+
+  .choga-hero__title {
+    grid-column: 1 / -1;
+    margin-top: 8px;
+    font-size: clamp(34px, 11vw, 48px);
+    white-space: normal;
+  }
+}
+
+@media (max-width: 480px) {
+  .choga-hero {
+    padding-inline: 20px;
+  }
+
+  .choga-hero__stage {
+    gap: 16px;
+  }
+}
+
+/* =========================================================
+   REST SECTION (休)
+========================================================= */
+.choga-rest {
+  background-color: var(--color-white);
+  padding: 100px 0 0 0;
+  position: relative;
+  width: 100%;
+}
+
+.choga-rest::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 60px;
+  background-color: var(--color-warm-white); /* 하단 크림색 띠 */
+  margin-top: 100px;
+}
+
+.choga-rest__inner {
+  display: flex;
+  align-items: flex-start; /* 상단 텍스트 기준 정렬 */
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.choga-rest__hanja {
+  font-family: var(--font-hanja);
+  font-size: 110px; /* 본문 23px 기준 2.5줄 정도 높이로 재계산 */
+  font-weight: 700;
+  color: var(--color-ink);
+  line-height: 1;
+  margin-top: -12px; /* 우측 텍스트 상단과 시각적 정렬 보정 */
+}
+
+.choga-rest__desc {
+  margin-left: 50px; /* '休'와 텍스트 사이 간격 */
+  display: flex;
+  flex-direction: column;
+  gap: 40px; /* 국문과 영문 사이 간격 확대 */
+}
+
+.choga-rest__desc p {
+  margin: 0;
+  color: var(--color-ink-soft);
+  letter-spacing: -0.02em;
+}
+
+.choga-rest__desc .desc-ko {
+  font-family: var(--font-body);
+  line-height: 2.1;
+  font-size: 23px; /* 요청하신 본문 폰트 23px 적용 */
+}
+
+.choga-rest__desc .desc-en {
+  font-family: var(--font-en);
+  line-height: 1.8;
+  font-size: 23px; /* 영문도 본문에 맞춰 크게 적용 */
+}
+
+.choga-rest__link {
+  margin-left: auto; /* 우측 끝으로 밀기 */
+  align-self: flex-end; /* 전체 컨테이너의 맨 아래(영어 텍스트 하단)에 정렬 */
+}
+
+.choga-rest__link a {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 26px; /* 본문 대비 살짝 더 큼지막하게 */
+  color: var(--color-ink);
+  text-decoration: none;
+  gap: 12px;
+  letter-spacing: -0.02em;
+}
+
+.choga-rest__link .arrow-icon {
+  color: var(--color-ink);
+  margin-top: 2px;
+  width: 140px; /* 화살표도 비율에 맞춰 길게 */
+  opacity: 0;
+  filter: blur(4px);
+  transform: translateX(-15px);
+  transition: opacity 0.4s var(--ease-calm), filter 0.4s var(--ease-calm), transform 0.4s var(--ease-calm);
+}
+
+.choga-rest__link a:hover .arrow-icon {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateX(0);
+}
+
+/* RESPONSIVE for REST SECTION */
+@media (max-width: 1024px) {
+  .choga-rest__hanja {
+    font-size: 80px;
+  }
+  .choga-rest__desc p {
+    font-size: 18px;
+  }
+  .choga-rest__desc {
+    margin-left: 40px;
+  }
+  .choga-rest__link a {
+    font-size: 20px;
+  }
+  .choga-rest__link .arrow-icon {
+    width: 100px;
+  }
+}
+
+@media (max-width: 760px) {
+  .choga-rest__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .choga-rest__hanja {
+    margin-top: 0;
+  }
+  .choga-rest__desc {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+  .choga-rest__desc p {
+    font-size: 16px;
+  }
+  .choga-rest__link {
+    margin-left: 0;
+    margin-top: 40px;
+    align-self: flex-start;
+  }
+  .choga-rest__link a {
+    font-size: 18px;
+  }
+  .choga-rest__link .arrow-icon {
+    width: 80px;
+  }
+}
+
+/* =========================================================
+   PREMIUM AMENITY SECTION
+========================================================= */
+.choga-amenity {
+  background-color: var(--color-warm-white);
+  padding: 140px 0;
+  overflow: hidden; /* 영역 밖 슬라이더 숨김 */
+}
+
+.choga-amenity__inner {
+  display: flex;
+  align-items: center;
+  /* 컨테이너 좌측 여백(margin auto + gutter)과 동일하게 맞춤 (가운데 정렬된 1280px 컨테이너 기준) */
+  padding-left: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter)));
+}
+
+.choga-amenity__text {
+  flex: 0 0 45%;
+  padding-right: 80px;
+  box-sizing: border-box;
+}
+
+.amenity-title {
+  font-family: var(--font-heading);
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--color-ink);
+  margin-bottom: 40px;
+}
+
+.amenity-desc {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 60px;
+}
+
+.amenity-desc p {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 23px; /* 16px에서 23px로 대폭 키움 */
+  color: var(--color-ink-soft);
+  line-height: 1.8; /* 폰트가 커졌으므로 줄간격도 조금 더 여유있게 조정 */
+  letter-spacing: -0.02em;
+}
+
+.amenity-logo img {
+  width: 220px;
+  height: auto;
+  opacity: 0.85; /* 배경에 은은하게 어우러지도록 */
+}
+
+.choga-amenity__slider-wrap {
+  flex: 1;
+  min-width: 0; /* flex 자식 버그 방지 */
+  /* 우측 끝까지 뻗어나가도록 padding, margin 없음 */
+}
+
+.amenity-slider {
+  width: 100%;
+  position: relative;
+  overflow: hidden; /* 왼쪽 본문 영역으로 슬라이드가 침범하지 않도록 완벽 차단 */
+  border-radius: 4px; /* 살짝 부드럽게 */
+  aspect-ratio: 16 / 15; /* 두 이미지의 비율과 레이아웃 유지를 위한 고정 비율 */
+}
+
+.amenity-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.amenity-slide {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 800ms cubic-bezier(0.4, 0, 0.2, 1); /* 부드럽게 위치가 바뀌는(Swap) 애니메이션 */
+}
+
+/* 현재 메인(큰) 이미지 상태 */
+.amenity-slide.is-main {
+  left: 0;
+  width: 75%;
+  z-index: 2;
+}
+
+/* 우측 서브(작은) 이미지 상태 */
+.amenity-slide.is-sub {
+  left: calc(75% + 20px);
+  width: 25%;
+  z-index: 1;
+}
+
+.amenity-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: var(--color-placeholder-grey);
+}
+
+.amenity-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
+  color: var(--color-white);
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  transition: opacity var(--transition-fast);
+}
+
+.amenity-nav-btn:hover {
+  opacity: 1;
+}
+
+.amenity-nav-btn svg {
+  width: 28px;
+  height: 28px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4)); /* 사진 위에서 눈에 띄게 그림자 처리 */
+}
+
+.amenity-nav-btn.next-btn {
+  /* 메인 슬라이드(75% 너비)의 우측 끝에 배치 */
+  left: calc(75% - 64px);
+}
+
+.amenity-nav-btn.prev-btn {
+  left: 20px;
+}
+
+/* RESPONSIVE for AMENITY SECTION */
+@media (max-width: 1024px) {
+  .choga-amenity__text {
+    flex: 0 0 50%;
+    padding-right: 40px;
+  }
+  .amenity-title { font-size: 32px; }
+  .amenity-desc p { font-size: 15px; }
+}
+
+@media (max-width: 760px) {
+  .choga-amenity {
+    padding: 80px 0;
+  }
+  .choga-amenity__inner {
+    flex-direction: column;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+  }
+  .choga-amenity__text {
+    width: 100%;
+    padding-right: 0;
+    margin-bottom: 50px;
+  }
+  .choga-amenity__slider-wrap {
+    width: 100%;
+    margin-right: 0;
+  }
+  .amenity-slider {
+    aspect-ratio: 16 / 11; /* 모바일에서 좀 더 안정적인 직사각형 비율 */
+  }
+  .amenity-slide.is-sub {
+    display: none !important;
+  }
+  .amenity-slide.is-main {
+    width: 100% !important;
+  }
+  .amenity-nav-btn.next-btn {
+    right: 20px !important;
+    left: auto !important;
+  }
+}
+
+/* =========================================================
+   CHOGA ROOMS SECTION (초가 별관 객실 목록)
+========================================================= */
+.choga-rooms-section {
+  position: relative;
+  width: 100%;
+  background-color: #3D4A2F; /* 스토리 섹션과 동일한 다크 올리브 그린 */
+  padding: 180px 0;
+  color: var(--color-white);
+  overflow: hidden; /* 좌우측 Fixed 요소로 인한 가로 스크롤 방지 */
+}
+
+.rooms-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 160px;
+  width: 100%;
+  max-width: 1500px; /* 전체 컨테이너를 아주 넓게 씁니다 */
+  margin: 0 auto;
+  padding: 0 4vw; /* 화면 양쪽 끝에 약간의 여백만 둡니다 */
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+}
+
+/* ── 개별 객실 ── */
+.room-article {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 80px; /* 큼지막한 이미지와 텍스트 사이 간격 */
+  width: 100%;
+  max-width: 100%; /* 여백 없이 컨테이너 너비를 꽉 채워 내비게이션과 겹치게 만듭니다 */
+}
+
+.room-media {
+  flex: 0 0 52%;
+  aspect-ratio: 1.4 / 1;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.room-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.room-info {
+  flex: 0 0 43%;
+  display: flex;
+  flex-direction: column;
+}
+
+.room-title {
+  font-family: var(--font-heading);
+  font-size: 30px;
+  font-weight: 500;
+  color: var(--color-white);
+  margin: 0 0 30px 0;
+  letter-spacing: -0.02em;
+}
+
+.room-desc-title {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 14px 0;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.room-desc-body {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.6;
+  margin: 0 0 28px 0;
+  color: rgba(255, 255, 255, 0.85);
+  word-break: keep-all;
+}
+
+.room-details {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.room-details li {
+  position: relative;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.85);
+  padding-left: 14px;
+  line-height: 1.4;
+}
+
+.room-details li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 3px;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+}
+
+/* ── 우측 하단 락고재 로고 ── */
+.rooms-bottom-logo {
+  position: absolute;
+  bottom: 80px;
+  right: 6vw;
+  z-index: 10;
+}
+
+.rooms-bottom-logo img {
+  width: 140px;
+  height: auto;
+  opacity: 0.9;
+}
+
+/* =========================================================
+   좌측 Fixed 서브 네비게이션 (스크롤 스파이)
+========================================================= */
+.rooms-side-nav {
+  position: fixed;
+  left: 4vw; /* 좌측 여백을 조금 줄여서 본문 침범 방지 */
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  color: var(--color-white);
+  width: auto; /* 고정 너비 해제 */
+  
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 800ms var(--ease-calm);
+}
+
+.rooms-side-nav.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.rooms-side-nav.is-animating {
+  animation: sideNavReveal 900ms var(--ease-calm) forwards;
+}
+
+.side-nav-hanja {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 32px;
+  width: 54px; /* 한자 중심선 약간 키움 */
+}
+
+.hanja-char {
+  font-family: var(--font-hanja, "Noto Serif TC", serif); /* 서체 명시적 재선언 */
+  font-size: 54px; /* 기존 44px에서 크기 대폭 확대 */
+  font-weight: 400; /* 조금 더 획이 또렷하게 보이도록 weight 수정 */
+  line-height: 1;
+  color: var(--color-white);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  
+  opacity: 0;
+  filter: blur(8px);
+  transform: scale(1.15) translateY(-6px);
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 1200ms var(--ease-calm),
+              filter 1200ms var(--ease-calm),
+              transform 1200ms var(--ease-calm),
+              max-height 700ms var(--ease-calm);
+}
+
+.hanja-char.is-active {
+  opacity: 0.95;
+  filter: blur(0);
+  transform: scale(1) translateY(0);
+  max-height: 58px; /* 한자 높이만큼 */
+}
+
+.side-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.side-nav-item {
+  position: relative;
+  width: 100%;
+}
+
+.side-nav-item a {
+  display: block;
+  position: relative;
+  text-decoration: none;
+  color: var(--color-white);
+  transition: color var(--dur-fast);
+  min-height: 24px;
+}
+
+.side-nav-bullet {
+  display: inline-block;
+  position: absolute;
+  left: 23px; /* 한자 중심선 맞춤 */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--color-white);
+  border-radius: 50%;
+  background: transparent;
+  box-sizing: border-box;
+  transition: background 400ms var(--ease-calm);
+}
+
+.side-nav-text {
+  display: block;
+  padding-left: 50px; /* 불릿 오른쪽 여백 */
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: -0.015em;
+  opacity: 0.45;
+  transition: opacity 400ms var(--ease-calm), font-weight 400ms var(--ease-calm);
+  white-space: nowrap;
+  line-height: 24px;
+}
+
+.side-nav-item:hover .side-nav-text { opacity: 0.85; }
+.side-nav-item.is-active .side-nav-bullet { background: var(--color-white); }
+.side-nav-item.is-active .side-nav-text { opacity: 1; font-weight: 500; }
+
+/* =========================================================
+   우측 Fixed 예약하기 버튼
+========================================================= */
+.rooms-book-btn-fixed {
+  position: fixed;
+  right: 6vw; /* 좌측 네비게이션과 대칭되는 우측 여백 */
+  top: 50%; /* 네비게이션과 동일한 Y축 센터 배치 */
+  transform: translateY(-50%);
+  z-index: 100;
+  
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 32px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: transparent;
+  border-radius: 2px;
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+  
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 800ms var(--ease-calm),
+              background 300ms var(--ease-calm),
+              color 300ms var(--ease-calm),
+              border-color 300ms var(--ease-calm);
+}
+
+.rooms-book-btn-fixed.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.rooms-book-btn-fixed:hover {
+  background: var(--color-white);
+  color: #3D4A2F;
+  border-color: var(--color-white);
+}
+
+/* =========================================================
+   DINING SECTION
+========================================================= */
+.choga-dining {
+  background-color: #FAF8F5; /* 연한 크림색 배경 */
+  padding: 160px 0;
+  overflow: hidden;
+}
+
+.choga-dining__inner {
+  display: flex;
+  align-items: center;
+  padding-left: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter)));
+}
+
+.choga-dining__text {
+  flex: 0 0 40%;
+  padding-right: 80px;
+  box-sizing: border-box;
+}
+
+.choga-dining-title {
+  font-family: var(--font-heading);
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--color-ink);
+  margin-bottom: 40px;
+  letter-spacing: -0.02em;
+}
+
+.choga-dining-desc p {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 23px;
+  color: var(--color-ink-soft);
+  line-height: 1.8;
+  letter-spacing: -0.02em;
+  word-break: keep-all;
+}
+
+.choga-dining-book-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  padding: 12px 30px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  color: #555555;
+  border: 1px solid #C0C0C0;
+  border-radius: 30px;
+  text-decoration: none;
+  background: transparent;
+  transition: all var(--transition-fast);
+}
+
+.choga-dining-book-btn:hover {
+  border-color: #3D4A2F;
+  color: #3D4A2F;
+}
+
+.choga-dining__slider-wrap {
+  flex: 1;
+  min-width: 0;
+}
+
+.dining-slider {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  aspect-ratio: 16 / 15;
+}
+
+.dining-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.dining-slide {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 800ms cubic-bezier(0.4, 0, 0.2, 1); /* 부드럽게 위치가 바뀌는(Swap) 애니메이션 */
+}
+
+/* 현재 메인(큰) 이미지 상태 */
+.dining-slide.is-main {
+  left: 0;
+  width: 75%;
+  z-index: 2;
+}
+
+/* 우측 서브(작은) 이미지 상태 */
+.dining-slide.is-sub {
+  left: calc(75% + 20px);
+  width: 25%;
+  z-index: 1;
+}
+
+.dining-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: var(--color-placeholder-grey);
+}
+
+.dining-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
+  color: var(--color-white);
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  transition: opacity var(--transition-fast);
+}
+
+.dining-nav-btn:hover {
+  opacity: 1;
+}
+
+.dining-nav-btn svg {
+  width: 28px;
+  height: 28px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+}
+
+.dining-nav-btn.next-btn {
+  left: calc(75% - 64px);
+}
+
+.dining-nav-btn.prev-btn {
+  left: 20px;
+}
+
+/* =========================================================
+   모바일 & 태블릿 반응형
+========================================================= */
+@media (max-width: 1024px) {
+  .rooms-side-nav,
+  .rooms-book-btn-fixed {
+    display: none !important; /* 모바일/태블릿에서는 Fixed 요소 숨김 */
+  }
+  .choga-rooms-section {
+    padding: 100px 0;
+  }
+  .rooms-container {
+    gap: 100px;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+  }
+  .room-article {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .room-media { 
+    width: 100%; 
+    flex: auto; 
+  }
+  .room-info { 
+    width: 100%; 
+    flex: auto; 
+    padding: 0 16px;
+    box-sizing: border-box;
+  }
+  .rooms-bottom-logo {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 40px;
+  }
+
+  /* Dining Tablet Layout */
+  .choga-dining__text {
+    flex: 0 0 50%;
+    padding-right: 40px;
+  }
+  .choga-dining-title {
+    font-size: 32px;
+  }
+  .choga-dining-desc p {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 760px) {
+  /* Dining Mobile Layout */
+  .choga-dining {
+    padding: 80px 0;
+  }
+  .choga-dining__inner {
+    flex-direction: column;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+  }
+  .choga-dining__text {
+    width: 100%;
+    padding-right: 0;
+    margin-bottom: 50px;
+  }
+  .choga-dining__slider-wrap {
+    width: 100%;
+    margin-right: 0;
+  }
+  .dining-slider {
+    aspect-ratio: 16 / 11;
+  }
+  .dining-slide.is-sub {
+    display: none !important;
+  }
+  .dining-slide.is-main {
+    width: 100% !important;
+  }
+  .dining-nav-btn.next-btn {
+    right: 20px !important;
+    left: auto !important;
+  }
+}
+
+/* =========================================================
+   RESERVATION SECTION
+========================================================= */
+.choga-reservation {
+  background-color: #FFFFFF;
+  padding: 100px 0 160px; /* 다이닝과 푸터 사이 여백 */
+}
+
+.reservation-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.res-title {
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 600;
+  color: #A38C76; /* 이미지와 유사한 브라운 계열 */
+  margin-bottom: 40px;
+  letter-spacing: -0.02em;
+}
+
+.res-bar-wrap {
+  width: 100%;
+}
+
+.res-bar {
+  display: flex;
+  align-items: stretch;
+  border-top: 1px solid #D4C4B7;
+  border-bottom: 1px solid #D4C4B7;
+  height: 60px;
+  background-color: #FAF5EE; /* 항목들의 크림색 배경 */
+}
+
+.res-item {
+  position: relative;
+  flex: 1;
+  border-right: 2px solid #FFFFFF; /* 항목 사이의 흰색 구분선 */
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  min-width: 0;
+}
+
+.res-item:nth-last-child(2) {
+  /* 예약버튼 이전(다이닝) 항목은 오른쪽 구분선 없음 */
+  border-right: none;
+}
+
+.res-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* Chrome/Safari 버그 방지용 (date input 클릭 시 달력 무조건 뜨게) */
+.res-input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.res-display {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.res-text {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: #4A4A4A;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.res-icon {
+  width: 18px;
+  height: 18px;
+  color: #4A4A4A;
+  flex-shrink: 0;
+  margin-left: 10px;
+}
+
+.res-icon-chevron {
+  width: 16px;
+  height: 16px;
+  color: #4A4A4A;
+  flex-shrink: 0;
+  margin-left: 10px;
+}
+
+.res-submit-btn {
+  flex: 0 0 160px;
+  background-color: #3D4A2F;
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.res-submit-btn:hover {
+  background-color: #2b3521;
+}
+
+@media (max-width: 768px) {
+  .res-bar {
+    flex-direction: column;
+    height: auto;
+    border-bottom: none;
+  }
+  
+  .res-item {
+    width: 100%;
+    height: 54px;
+    border-right: none;
+    border-bottom: 1px solid #D4C4B7;
+    padding: 0 16px;
+  }
+  
+  .res-item:nth-last-child(2) {
+    border-bottom: none;
+  }
+  
+  .res-submit-btn {
+    width: 100%;
+    height: 54px;
+    flex: none;
+    font-size: 15px;
+    border-bottom: 1px solid #D4C4B7;
+  }
+}
+
+/* =========================================================
+   CUSTOM SELECT UI & FLATPICKR
+========================================================= */
+.custom-select-wrapper {
+  position: relative;
+  /* 기존 res-item 특성을 그대로 유지하되 내부 구조만 변경 */
+}
+
+.custom-select-trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  pointer-events: auto; /* 기존엔 none이었음 */
+  z-index: 2;
+}
+
+.custom-options {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  width: 100%;
+  background-color: #FFFFFF;
+  border: 1px solid #EAEAEA;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  border-radius: 8px;
+  list-style: none;
+  padding: 8px 0;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 100;
+}
+
+.custom-select-wrapper.is-open .custom-options {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.custom-select-wrapper.is-open .res-icon-chevron {
+  transform: rotate(180deg);
+}
+
+.res-icon-chevron {
+  transition: transform 0.3s ease;
+}
+
+.custom-option {
+  padding: 12px 20px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: #4A4A4A;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.custom-option:hover {
+  background-color: #FAF5EE;
+  color: #3D4A2F;
+}
+
+/* Flatpickr Custom Theme for Rakkojae */
+.flatpickr-calendar {
+  font-family: var(--font-body) !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06) !important;
+  border: 1px solid #EAEAEA !important;
+  border-radius: 8px !important;
+}
+.flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange, .flatpickr-day.selected.inRange, .flatpickr-day.startRange.inRange, .flatpickr-day.endRange.inRange, .flatpickr-day.selected:focus, .flatpickr-day.startRange:focus, .flatpickr-day.endRange:focus, .flatpickr-day.selected:hover, .flatpickr-day.startRange:hover, .flatpickr-day.endRange:hover, .flatpickr-day.selected.prevMonthDay, .flatpickr-day.startRange.prevMonthDay, .flatpickr-day.endRange.prevMonthDay, .flatpickr-day.selected.nextMonthDay, .flatpickr-day.startRange.nextMonthDay, .flatpickr-day.endRange.nextMonthDay {
+  background: #3D4A2F !important;
+  border-color: #3D4A2F !important;
+}
+
+/* =========================================================
+   SCROLL REVEAL ANIMATION (Blur & Fade In)
+========================================================= */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(30px);
+  filter: blur(10px);
+  transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+              transform 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+              filter 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: opacity, transform, filter;
+}
+
+.reveal-item.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}

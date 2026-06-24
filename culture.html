@@ -1,0 +1,381 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>락고재 컬쳐 라운지</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+TC:wght@200;300;400&display=swap" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="culture.css" />
+</head>
+
+<body class="culture-page">
+
+  <!-- ============ HEADER ============ -->
+  <header class="header" id="header">
+    <div class="header__inner container">
+      <a href="index.html" class="header__logo" aria-label="락고재 홈">
+        <img src="logo.png" alt="RAKKOJAE" />
+      </a>
+
+      <nav class="nav" id="nav">
+        <div class="nav__logo">
+          <img src="logo.png" alt="RAKKOJAE" />
+        </div>
+        <ul class="nav__list">
+          <li><a href="history.html">락고재 100년</a></li>
+          <li class="nav-item-dropdown">
+            <a href="kiwa.html" class="nav-dropdown-trigger">
+              락고재 한옥 스테이
+              <svg class="nav-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </a>
+            <ul class="nav-submenu">
+              <li><a href="kiwa.html">락고재 한옥 스테이 - 기와본관</a></li>
+              <li><a href="choga.html">락고재 한옥 스테이 - 초가별관</a></li>
+              <li><a href="seoul.html">락고재 서울 본관</a></li>
+              <li><a href="bukchon.html">북촌빈관 by 락고재</a></li>
+              <li><a href="service.html">머무름을 위한 배려</a></li>
+            </ul>
+          </li>
+          <li><a href="culture.html">락고재 컬쳐 라운지</a></li>
+          <li><a href="dining.html">락고재 한식 다이닝</a></li>
+          <li><a href="http://rkjcf.or.kr/" target="_blank" rel="noopener">락고재 문화재단</a></li>
+        </ul>
+      </nav>
+
+      <div class="header__util">
+        <button class="util__search" aria-label="검색">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6">
+            <circle cx="11" cy="11" r="7" />
+            <line x1="16.5" y1="16.5" x2="21" y2="21" stroke-linecap="round" />
+          </svg>
+        </button>
+        <a href="#" class="util__link">로그인</a>
+        <span class="util__divider" aria-hidden="true"></span>
+        <a href="#" class="util__link util__lang">언어</a>
+
+        <button class="util__toggle" id="navToggle" aria-label="메뉴 열기" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <div class="header-search-bar" id="headerSearchBar" role="search" aria-hidden="true">
+        <div class="header-search-inner">
+          <div class="header-search-hint" id="headerSearchHint"></div>
+          <input type="search" class="header-search-input" id="headerSearchInput" placeholder="검색어를 입력하세요"
+            autocomplete="off" aria-label="검색" />
+          <button class="header-search-close" id="headerSearchClose" aria-label="검색 닫기">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="cl-hero">
+
+    <div class="cl-hero__left reveal-item">
+      <img src="images/culture-01.jpg" alt="락고재 컬쳐 라운지" />
+    </div>
+
+    <div class="cl-hero__right">
+      <div class="cl-hero__text reveal-item">
+        <h1 class="cl-hero__title">락고재 컬쳐 라운지</h1>
+        <div class="cl-hero__hanja">愛家軒</div>
+        <div class="cl-hero__desc">
+          <p>사랑하는 가족의 집의 뜻으로 락고재의 새로운 한국 문화체험 공간, 락고재 컬쳐 라운지를 짓게 되었습니다.</p>
+          <p>이곳에 오시는 귀한 손님이 사랑과 은혜가 넘치는 집에서 우리 고유의 문화를 즐기고 가셨으면 하는 바람으로 설립되었습니다.</p>
+          <p>2019년 서울시 우수 한옥으로 선정된 락고재 컬쳐 라운지는, 조선시대의 사랑방을 재해석한 우리나라의 식문화와 풍류를 즐길 수 있는 공간입니다.</p>
+          <p>락고재 컬쳐 라운지에서 예약제로 운영되는 프로그램은 우리 차 수업, 우리 술 시음, 전통 구방 클래스, 가야금 연주, 아트 프로그램 등을 통해 고유한 한국 문화의 특별함을 느끼시기 바랍니다.</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============ TEA CEREMONY ============ -->
+  <section class="cl-tea">
+    <div class="cl-tea__inner">
+
+      <div class="cl-tea__text reveal-item">
+        <h2 class="cl-tea__title">Korean Hanbok<br>Tea Ceremony</h2>
+        <p>락고재의 스페셜한 스토리가 담긴 사계절에 맞는 수제차를 마셔보며, 한국의 이야기를 들려줍니다. 프라이빗하게 진행되는 우리 차 체험과 품격 있는 락고재 컬쳐 라운지 공간이 주는 옛 정취를 함께 느껴보세요.</p>
+      </div>
+
+      <div class="cl-tea__images">
+        <figure class="cl-tea__img-main reveal-item">
+          <img src="images/culture-02.jpg" alt="다도 공간" />
+        </figure>
+        <figure class="cl-tea__img-sub reveal-item">
+          <img src="images/culture-03.jpg" alt="다도 공간" />
+        </figure>
+      </div>
+
+    </div>
+
+    <div class="cl-tea__hanja reveal-item">樂古齋</div>
+
+  </section>
+
+  <!-- ============ LIQUOR EXPERIENCE ============ -->
+  <section class="cl-liquor">
+    <div class="cl-liquor__inner">
+
+      <div class="cl-liquor__image reveal-item">
+        <img src="images/culture-04.jpg" alt="한국 전통주 체험" />
+      </div>
+
+      <div class="cl-liquor__text reveal-item">
+        <h2 class="cl-liquor__title">Korean Traditional<br>Liquor Experience</h2>
+        <p>한국 전통 발효주의 깊은 맛과 향을 직접 체험하실 수 있습니다. 막걸리, 동동주, 약주 등 다양한 전통주를 시음하며 한국 주류 문화의 독특한 매력을 발견하세요.</p>
+        <p>전통 방식으로 제조된 다양한 한국 전통주를 전문가의 설명과 함께 즐기실 수 있습니다. 우리 민족의 역사와 문화가 깃든 전통주 한 잔으로 락고재에서의 특별한 추억을 만들어 드립니다.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE RESERVATION SECTION ============ -->
+  <section class="cl-reservation" id="experienceReservation">
+    <div class="reservation-inner reveal-item">
+      <h2 class="res-title">체험 예약</h2>
+
+      <div class="res-bar-wrap">
+        <form class="res-bar" action="#" method="GET">
+
+          <!-- 1. 날짜 선택 -->
+          <div class="res-item">
+            <input type="date" class="res-input" required name="date" />
+            <div class="res-display">
+              <span class="res-text">날짜 선택</span>
+              <svg class="res-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 2. 인원 선택 -->
+          <div class="res-item custom-select-wrapper">
+            <div class="res-display custom-select-trigger" tabindex="0">
+              <span class="res-text">인원 선택</span>
+              <svg class="res-icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+            <ul class="custom-options">
+              <li class="custom-option" data-value="1">1명</li>
+              <li class="custom-option" data-value="2">2명</li>
+              <li class="custom-option" data-value="3">3명</li>
+              <li class="custom-option" data-value="4">4명</li>
+              <li class="custom-option" data-value="5">5명 이상</li>
+            </ul>
+            <input type="hidden" name="guests" class="res-hidden-input">
+          </div>
+
+          <!-- 3. 프로그램 선택 -->
+          <div class="res-item custom-select-wrapper">
+            <div class="res-display custom-select-trigger" tabindex="0">
+              <span class="res-text">프로그램 선택</span>
+              <svg class="res-icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+            <ul class="custom-options">
+              <li class="custom-option" data-value="hanbok">한복 체험</li>
+              <li class="custom-option" data-value="gayageum">가야금 체험</li>
+              <li class="custom-option" data-value="tea">우리차 수업</li>
+              <li class="custom-option" data-value="liquor">우리 술 시음</li>
+              <li class="custom-option" data-value="gyubang">전통 규방 클래스</li>
+              <li class="custom-option" data-value="art">아트 프로그램</li>
+            </ul>
+            <input type="hidden" name="program" class="res-hidden-input">
+          </div>
+
+          <!-- 예약 신청 버튼 -->
+          <button type="submit" class="res-submit-btn">예약 신청</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+
+    <div class="footer-upper">
+      <div class="footer-upper-inner container">
+
+        <div class="footer-logo-col">
+          <div class="footer-logo">
+            <img src="images/footer-logo-01.png" class="footer-logo-img" alt="RAKKOJAE HANOK HOTELS" />
+          </div>
+        </div>
+
+        <div class="footer-info-grid">
+
+          <div class="footer-info-col">
+            <h4 class="info-col-title">락고재 하회 한옥호텔 - 기와 본관</h4>
+            <ul class="info-col-list">
+              <li>경상북도 안동시 풍천면 전서로 186-20</li>
+              <li>T. 010-8860-3410</li>
+              <li>E. andong@rkj.co.kr</li>
+              <li>사업자등록번호: 508-81-26196</li>
+              <li>대표: 안영환</li>
+            </ul>
+          </div>
+
+          <div class="footer-info-col">
+            <h4 class="info-col-title">락고재 하회 한옥호텔 - 초가 별관</h4>
+            <ul class="info-col-list">
+              <li>경상북도 안동시 풍천면 하회강변길 51</li>
+              <li>T. 010-8860-3410</li>
+              <li>E. andong@rkj.co.kr</li>
+              <li>사업자등록번호: 522-85-02280</li>
+              <li>대표: 안영환</li>
+            </ul>
+          </div>
+
+          <div class="footer-info-col">
+            <h4 class="info-col-title">락고재 서울 본관</h4>
+            <ul class="info-col-list">
+              <li>서울특별시 종로구 가회동 218</li>
+              <li>T. 02-742-3410</li>
+              <li>E. seoul@rkj.co.kr</li>
+              <li>사업자등록번호: 624-85-02868</li>
+              <li>대표: 안영환</li>
+            </ul>
+          </div>
+
+          <div class="footer-info-col">
+            <h4 class="info-col-title">북촌빈관 by 락고재</h4>
+            <ul class="info-col-list">
+              <li>서울특별시 종로구 북촌로 11가길 10</li>
+              <li>T. 02-742-3410</li>
+              <li>E. seoul@rkj.co.kr</li>
+              <li>사업자등록번호: 395-85-01879</li>
+              <li>대표: 안영환</li>
+            </ul>
+          </div>
+
+          <div class="footer-info-col">
+            <h4 class="info-col-title">락고재 컬쳐 라운지</h4>
+            <ul class="info-col-list">
+              <li>서울특별시 종로구 북촌로11가길 16</li>
+              <li>T. 0507-1369-3411</li>
+              <li>E. culture@rakkojae.com</li>
+              <li>사업자등록번호: 439-17-00394</li>
+              <li>통신판매업: 제2022-서울종로-1668호</li>
+              <li>대표: 김예목</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-lower">
+      <div class="footer-lower-inner container">
+
+        <div class="footer-affiliate">
+          <span class="affiliate-label">자회사 바로가기</span>
+          <div class="affiliate-dropdown-wrap">
+            <select id="affiliateSelect" class="affiliate-select" aria-label="자회사 링크 선택">
+              <option value="" disabled selected>자회사 링크</option>
+              <option value="http://rkjcf.or.kr/">재단법인 락고재문화재단</option>
+              <option value="https://blog.naver.com/rakkojae">락고재 공식 블로그</option>
+              <option value="https://houseofheritage.kr/">하우스 오브 헤리티지</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="footer-michelin">
+          <div class="michelin-badge">
+            <img src="images/michelin.png" class="footer-michelin-img" alt="미쉐린 가이드 서울" />
+            <div class="michelin-desc-box">
+              <span class="michelin-badge-desc">'미쉐린 가이드' 선정 한옥 호텔</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-foundation">
+          <span class="foundation-hanja">樂古齋</span>
+          <span class="foundation-title">재단법인 락고재문화재단</span>
+        </div>
+
+        <div class="footer-sns">
+          <a href="https://www.instagram.com/rakkojae_seoul/" target="_blank" rel="noopener noreferrer" class="sns-link"
+            aria-label="인스타그램">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+          <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" class="sns-link" aria-label="트위터">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+              </path>
+            </svg>
+          </a>
+          <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" class="sns-link"
+            aria-label="유튜브">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z">
+              </path>
+              <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </footer>
+
+  <button class="floating-top-btn" id="floatingTopBtn" aria-label="페이지 상단으로 이동">
+    <svg class="floating-top-btn__arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+      stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="12" y1="19" x2="12" y2="5"></line>
+      <polyline points="5 12 12 5 19 12"></polyline>
+    </svg>
+  </button>
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
+  <script src="search.js"></script>
+  <script src="culture.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="login.js"></script>
+  <script src="translate.js"></script>
+  <script src="mypage.js"></script>
+</body>
+
+</html>

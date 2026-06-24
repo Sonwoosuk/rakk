@@ -1,0 +1,88 @@
+/* =========================================================
+   Root — 디자인 토큰 & 폰트
+   모든 CSS 변수와 웹폰트 선언을 한 곳에서 관리합니다.
+========================================================= */
+
+/* ── 폰트 임포트 ──
+   렌더 블로킹 방지: @import 대신 HTML <link rel="preload">로 이동됨
+   (index.html <head> 참고)
+   ─────────────────────────────────────────────────────── */
+/* Pretendard: preload로 처리 */
+
+@font-face {
+  font-family: "MaruBuri";
+  src: url("https://hangeul.pstatic.net/hangeul_static/webfont/MaruBuri/MaruBuri-Regular.woff2") format("woff2"),
+       url("https://hangeul.pstatic.net/hangeul_static/webfont/MaruBuri/MaruBuri-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "MaruBuri";
+  src: url("https://hangeul.pstatic.net/hangeul_static/webfont/MaruBuri/MaruBuri-Bold.woff2") format("woff2"),
+       url("https://hangeul.pstatic.net/hangeul_static/webfont/MaruBuri/MaruBuri-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── CSS 커스텀 프로퍼티 ── */
+:root {
+
+  /* ─── 색상 팔레트 (HEX) ─── */
+  --color-brown:            #7B4B20;     /* 따뜻한 브라운 */
+  --color-ink:              #2B1A13;     /* 다크 브라운 (기본 텍스트) */
+  --color-ink-soft:         #5A4636;     /* 보조 텍스트 */
+  --color-cream:            #FFF5E6;     /* 크림/아이보리 */
+  --color-tan:              #B09A78;     /* 탄/카키 */
+  --color-line:             #B09A78;     /* 라인/구분선 */
+  --color-white:            #FFFFFF;
+  --color-black:            #000000;
+  --color-paper:            #FFF5E6;     /* 페이지 배경 */
+  --color-warm-white:       #FFF7E9;     /* 소프트 크림 화이트 */
+  --color-green:            #3D4A2F;     /* 스토리 섹션 그린 */
+  --color-placeholder-grey: #D4CFC8;     /* 플레이스홀더 */
+
+  /* ─── RGB 채널 (rgba 투명도 조절용) ─── */
+  --color-white-rgb:        255, 255, 255;
+  --color-black-rgb:        0, 0, 0;
+  --color-ink-rgb:          43, 26, 19;
+  --color-cream-rgb:        255, 245, 230;
+  --color-warm-white-rgb:   255, 247, 233;
+  --color-green-rgb:        61, 74, 47;
+  --color-tan-rgb:          176, 154, 120;
+
+  /* ─── 서체 ─── */
+  --font-body:    "Pretendard Variable", "Pretendard", system-ui, sans-serif;
+  --font-heading: "MaruBuri", serif;
+  --font-en:      "Cormorant Garamond", serif;
+  --font-hanja:   "Noto Serif TC", "Noto Serif CJK TC", serif; /* 고풍스럽고 우아한 한자 서체 (명조체) */
+
+  /* ─── 레이아웃 ─── */
+  --header-h:        84px;
+  --header-h-mobile: 64px;
+  --container:       1280px;
+  --gutter:          40px;
+
+  /* ─── 이징 ─── */
+  --ease-calm: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ─── 듀레이션 ─── */
+  --dur-xs:    250ms;
+  --dur-sm:    300ms;
+  --dur-md:    400ms;
+  --dur-lg:    500ms;
+  --dur-xl:    600ms;
+  --dur-xxl:   700ms;
+  --dur-track: 900ms;
+  --dur-slide: 1000ms;
+
+  /* ─── 키프레임용 ─── */
+  --slide-dur:    1800ms;
+  --kenburns-dur: 9000ms;
+
+  /* ─── 트랜지션 단축 ─── */
+  --transition-fast:   var(--dur-sm)  var(--ease-calm);
+  --transition-normal: var(--dur-md)  var(--ease-calm);
+  --transition-slow:   var(--dur-xl)  var(--ease-calm);
+}

@@ -1,0 +1,466 @@
+@import "reservation.css";
+
+/* =========================================================
+   락고재 컬쳐 라운지 페이지
+   ========================================================= */
+
+body.culture-page {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  overflow-x: hidden;
+}
+
+/* =========================================================
+   HERO SECTION
+   좌: 대형 세로 이미지 / 우: 태그 + 타이틀 + 본문 + 작은 이미지
+========================================================= */
+.cl-hero {
+  display: flex;
+  min-height: 100vh;
+  background: var(--color-paper);
+}
+
+.cl-hero__left {
+  flex: 0 0 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.cl-hero__left img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cl-hero__right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background-color: var(--color-green);
+  color: var(--color-white);
+}
+
+.cl-hero__text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: calc(var(--header-h) + 40px) 80px 80px;
+  box-sizing: border-box;
+}
+
+.cl-hero__title {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 3.5vw, 48px);
+  font-weight: 500;
+  color: var(--color-white);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin: 0 0 20px 0;
+}
+
+.cl-hero__hanja {
+  font-family: var(--font-hanja);
+  font-size: 20px;
+  color: var(--color-tan);
+  margin-bottom: 30px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+}
+
+.cl-hero__desc p {
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--color-tan);
+  margin: 0 0 22px 0;
+  word-break: keep-all;
+}
+
+.cl-hero__desc p:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================================================
+   TEA CEREMONY SECTION
+========================================================= */
+.cl-tea {
+  background: var(--color-white);
+  padding: 140px 0 160px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cl-tea__inner {
+  display: flex;
+  align-items: center;
+  gap: 100px;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  box-sizing: border-box;
+}
+
+.cl-tea__text {
+  flex: 0 0 42%;
+}
+
+.cl-tea__title {
+  font-family: var(--font-en);
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.15;
+  color: var(--color-green);
+  margin: 0 0 36px 0;
+  letter-spacing: -0.01em;
+}
+
+.cl-tea__text p {
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--color-green);
+  margin: 0 0 16px 0;
+  word-break: keep-all;
+}
+
+.cl-tea__text p:last-child {
+  margin-bottom: 0;
+}
+
+.cl-tea__images {
+  flex: 1;
+  position: relative;
+  min-height: 560px;
+}
+
+.cl-tea__img-main {
+  margin: 0 0 0 auto;
+  overflow: hidden;
+  width: 68%;
+  aspect-ratio: 3 / 4.2;
+}
+
+.cl-tea__img-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cl-tea__img-sub {
+  margin: 0;
+  overflow: hidden;
+  position: absolute;
+  left: -8%;
+  bottom: -40px;
+  width: 48%;
+  aspect-ratio: 1 / 1;
+  z-index: 2;
+}
+
+.cl-tea__img-sub img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 樂古齋 장식 한자 */
+.cl-tea__hanja {
+  position: absolute;
+  right: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter)));
+  bottom: 60px;
+  font-family: var(--font-hanja);
+  font-size: clamp(36px, 4vw, 54px);
+  font-weight: 700;
+  color: var(--color-ink);
+  line-height: 1;
+  letter-spacing: 0.1em;
+  opacity: 1;
+}
+
+/* =========================================================
+   LIQUOR EXPERIENCE SECTION
+========================================================= */
+.cl-liquor {
+  background: var(--color-paper);
+  padding: 140px 0 160px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cl-liquor__inner {
+  display: flex;
+  align-items: center;
+  gap: 100px;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.cl-liquor__image {
+  flex: 0 0 42%;
+  position: relative;
+  min-height: 560px;
+  overflow: hidden;
+}
+
+.cl-liquor__image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.cl-liquor__text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  max-width: 500px;
+}
+
+.cl-liquor__title {
+  font-family: var(--font-en);
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.15;
+  color: var(--color-green);
+  margin: 0 0 36px 0;
+  letter-spacing: -0.01em;
+}
+
+.cl-liquor__text p {
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--color-green);
+  margin: 0 0 16px 0;
+  word-break: keep-all;
+}
+
+.cl-liquor__text p:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================================================
+   REVEAL 애니메이션
+========================================================= */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(30px);
+  filter: blur(10px);
+  transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+              transform 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+              filter 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: opacity, transform, filter;
+}
+
+.reveal-item.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media (max-width: 1024px) {
+  .cl-hero__text {
+    padding: calc(var(--header-h-mobile) + 48px) 48px 40px;
+  }
+  .cl-tea__inner {
+    gap: 48px;
+  }
+  .cl-tea__img-sub {
+    right: -20px;
+    bottom: -40px;
+    width: 48%;
+  }
+  .cl-tea__hanja {
+    font-size: clamp(40px, 5vw, 64px);
+  }
+  .cl-liquor__inner {
+    gap: 48px;
+  }
+  .cl-liquor__text {
+    padding: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .cl-tea__title,
+  .cl-liquor__title {
+    font-size: clamp(26px, 7vw, 36px);
+  }
+}
+
+@media (max-width: 760px) {
+  /* Hero */
+  .cl-hero {
+    flex-direction: column;
+    min-height: auto;
+  }
+  .cl-hero__left {
+    flex: none;
+    height: 60vw;
+    min-height: 320px;
+  }
+  .cl-hero__right {
+    flex-direction: column;
+  }
+  .cl-hero__text {
+    flex: none;
+    padding: 48px var(--gutter) 36px;
+    justify-content: flex-start;
+  }
+  .cl-hero__sub-img {
+    flex: none;
+    height: 56vw;
+    min-height: 240px;
+  }
+
+  /* Tea */
+  .cl-tea {
+    padding: 80px 0 140px;
+  }
+  .cl-tea__inner {
+    flex-direction: column;
+    gap: 60px;
+    padding: 0 var(--gutter);
+  }
+  .cl-tea__text {
+    flex: none;
+  }
+  .cl-tea__images {
+    min-height: 320px;
+    width: 100%;
+  }
+  .cl-tea__img-sub {
+    right: -16px;
+    bottom: -50px;
+  }
+  .cl-tea__hanja {
+    right: var(--gutter);
+    bottom: -10px;
+    font-size: 48px;
+  }
+
+  /* Liquor */
+  .cl-liquor {
+    padding: 80px 0 140px;
+  }
+  .cl-liquor__inner {
+    flex-direction: column;
+    gap: 60px;
+    padding: 0 var(--gutter);
+  }
+  .cl-liquor__image {
+    flex: none;
+    width: 100%;
+    height: 80vw;
+    min-height: 380px;
+  }
+  .cl-liquor__text {
+    flex: none;
+    padding: 0;
+  }
+}
+
+/* =========================================================
+   EXPERIENCE RESERVATION SECTION
+========================================================= */
+.cl-reservation {
+  background-color: #FFFFFF;
+  padding: 100px 0 160px; /* 다이닝과 푸터 사이 여백 */
+}
+
+/* Custom Select & Flatpickr styles ported from kiwa.css */
+.cl-reservation .custom-select-wrapper {
+  position: relative;
+}
+
+.cl-reservation .custom-select-trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 2;
+}
+
+.cl-reservation .custom-options {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  width: 100%;
+  background-color: #FFFFFF;
+  border: 1px solid #EAEAEA;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  border-radius: 8px;
+  list-style: none;
+  padding: 8px 0;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 100;
+}
+
+.cl-reservation .custom-select-wrapper.is-open .custom-options {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.cl-reservation .custom-select-wrapper.is-open .res-icon-chevron {
+  transform: rotate(180deg);
+}
+
+.cl-reservation .res-icon-chevron {
+  transition: transform 0.3s ease;
+}
+
+.cl-reservation .custom-option {
+  padding: 12px 20px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: #4A4A4A;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.cl-reservation .custom-option:hover {
+  background-color: #FAF5EE;
+  color: #3D4A2F;
+}
+
+/* Flatpickr Custom Theme for Rakkojae */
+.flatpickr-calendar {
+  font-family: var(--font-body) !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06) !important;
+  border: 1px solid #EAEAEA !important;
+  border-radius: 8px !important;
+}
+.flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange, .flatpickr-day.selected.inRange, .flatpickr-day.startRange.inRange, .flatpickr-day.endRange.inRange, .flatpickr-day.selected:focus, .flatpickr-day.startRange:focus, .flatpickr-day.endRange:focus, .flatpickr-day.selected:hover, .flatpickr-day.startRange:hover, .flatpickr-day.endRange:hover, .flatpickr-day.selected.prevMonthDay, .flatpickr-day.startRange.prevMonthDay, .flatpickr-day.endRange.prevMonthDay, .flatpickr-day.selected.nextMonthDay, .flatpickr-day.startRange.nextMonthDay, .flatpickr-day.endRange.nextMonthDay {
+  background: #3D4A2F !important;
+  border-color: #3D4A2F !important;
+}

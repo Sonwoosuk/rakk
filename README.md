@@ -7,7 +7,20 @@
 
 **→ [sonwoosuk.github.io/rrak](https://sonwoosuk.github.io/rrak)**
 
-![락고재 메인](images/hero01.jpg)
+![메인](images/screenshot-main.png)
+
+<table>
+  <tr>
+    <td><img src="images/screenshot-hero.png" alt="히어로 슬라이드"></td>
+    <td><img src="images/screenshot-search.png" alt="검색 기능"></td>
+    <td><img src="images/screenshot-login.png" alt="로그인"></td>
+  </tr>
+  <tr>
+    <td><img src="images/screenshot-map.png" alt="지도"></td>
+    <td><img src="images/screenshot-lang.png" alt="언어 전환"></td>
+    <td></td>
+  </tr>
+</table>
 
 ---
 

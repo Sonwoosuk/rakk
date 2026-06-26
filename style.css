@@ -1096,7 +1096,8 @@ img { display: block; max-width: 100%; }
               transform 1.2s var(--ease-calm),
               background var(--dur-md) var(--ease-calm),
               color var(--dur-md) var(--ease-calm),
-              border-color var(--dur-md) var(--ease-calm);
+              border-color var(--dur-md) var(--ease-calm),
+              box-shadow var(--dur-md) var(--ease-calm);
 }
 
 .story-copy.is-active .story-title,
@@ -1109,6 +1110,8 @@ img { display: block; max-width: 100%; }
   background: var(--color-warm-white);
   color: var(--color-ink);
   border-color: var(--color-warm-white);
+  box-shadow: 0 4px 16px rgba(var(--color-ink-rgb), 0.18);
+  transform: translateY(-2px);
 }
 
 /* ── 네비게이션 화살표 ── */
@@ -1458,7 +1461,8 @@ img { display: block; max-width: 100%; }
               transform 1000ms var(--ease-calm),
               background var(--dur-xs) var(--ease-calm),
               color var(--dur-xs) var(--ease-calm),
-              border-color var(--dur-xs) var(--ease-calm);
+              border-color var(--dur-xs) var(--ease-calm),
+              box-shadow var(--dur-xs) var(--ease-calm);
 }
 
 .hotel-intro-btn:hover {
@@ -1473,7 +1477,19 @@ img { display: block; max-width: 100%; }
   transform: translateY(0);
 }
 
-/* 첫 번째 버튼: 150ms 대기 후 등장 */
+/* 첫 번째 버튼(공간 이야기): 크림 CTA + 150ms 대기 후 등장 */
+.btn-space {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  border-color: var(--color-cream);
+}
+.btn-space:hover {
+  background: var(--color-warm-white);
+  color: var(--color-ink);
+  border-color: var(--color-warm-white);
+  box-shadow: 0 4px 16px rgba(var(--color-ink-rgb), 0.18);
+  transform: translateY(-2px);
+}
 .hotel-intro-section.is-visible .btn-space {
   transition-delay: 150ms, 150ms, 0s, 0s, 0s;
 }

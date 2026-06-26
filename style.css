@@ -1562,7 +1562,7 @@ img { display: block; max-width: 100%; }
 /* 개별 한자 서체 및 페이드인+슬라이드 트랜지션 (고대 도시 블러 필터 효과 연출) */
 .hanja-char {
   font-family: var(--font-hanja);
-  font-size: 48px; /* 44px -> 48px로 한자 크기 확대 */
+  font-size: 60px; /* 48px -> 60px로 한자 크기 확대 */
   font-weight: 300;
   line-height: 1;
   color: var(--color-white);
@@ -1586,7 +1586,7 @@ img { display: block; max-width: 100%; }
   opacity: 0.95;
   filter: blur(0); /* 선명해짐 */
   transform: scale(1) translateY(0);
-  max-height: 48px; /* 한자 한 글자 세로 크기만큼 공간 확장 */
+  max-height: 64px; /* 확대된 한자(60px)가 잘리지 않도록 세로 공간 확장 */
 }
 
 .side-nav-list {

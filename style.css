@@ -1231,7 +1231,6 @@ img { display: block; max-width: 100%; }
   .marquee-strip--rtl .marquee-track {
     animation: none;
   }
-  * { transition-duration: 0.01ms !important; }
 }
 
 /* =========================================================

@@ -5,6 +5,8 @@
 
 **→ [sonwoosuk.github.io/rrak](https://sonwoosuk.github.io/rrak)**
 
+![락고재 메인](images/hero01.jpg)
+
 ---
 
 ## 구성

@@ -885,3 +885,51 @@
   }
 
 })();
+
+/* =========================================================
+   Footer 상단 지점정보 — 모바일에서 아코디언으로 접기
+========================================================= */
+(function () {
+  var mq = window.matchMedia("(max-width: 600px)");
+  var cols = document.querySelectorAll(".footer-info-grid .footer-info-col");
+  if (!cols.length) return;
+
+  cols.forEach(function (col) {
+    var title = col.querySelector(".info-col-title");
+    if (!title) return;
+
+    title.setAttribute("role", "button");
+    title.setAttribute("tabindex", "0");
+    title.setAttribute("aria-expanded", "false");
+
+    var toggle = function () {
+      if (!mq.matches) return; // 데스크탑에서는 동작하지 않음 (전체 표시)
+      var open = col.classList.toggle("is-open");
+      title.setAttribute("aria-expanded", open ? "true" : "false");
+    };
+
+    title.addEventListener("click", toggle);
+    title.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        toggle();
+      }
+    });
+  });
+
+  // 데스크탑(넓은 화면)으로 전환되면 접힘 상태 초기화하여 전체 노출
+  var reset = function () {
+    if (mq.matches) return;
+    cols.forEach(function (col) {
+      col.classList.remove("is-open");
+      var title = col.querySelector(".info-col-title");
+      if (title) title.setAttribute("aria-expanded", "false");
+    });
+  };
+
+  if (mq.addEventListener) {
+    mq.addEventListener("change", reset);
+  } else if (mq.addListener) {
+    mq.addListener(reset); // 구형 브라우저 호환
+  }
+})();

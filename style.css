@@ -2705,16 +2705,68 @@ img { display: block; max-width: 100%; }
     padding: 50px 0;
   }
   
+  /* ── 모바일: 지점정보 아코디언 ── */
   .footer-info-grid {
     grid-template-columns: 1fr;
-    gap: 28px;
-    text-align: center;
+    gap: 0;
+    text-align: left;
+    border-top: 1px solid rgba(90, 70, 54, 0.15);
   }
-  
+
   .footer-info-col {
-    align-items: center;
+    align-items: stretch;
+    gap: 0;
+    border-bottom: 1px solid rgba(90, 70, 54, 0.15);
   }
-  
+
+  /* 제목을 탭 가능한 아코디언 헤더로 */
+  .info-col-title {
+    position: relative;
+    cursor: pointer;
+    padding: 16px 28px 16px 0;
+    font-size: 13px;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* 펼침/접힘 표시 화살표(쉐브론) */
+  .info-col-title::after {
+    content: "";
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    margin-top: -6px;
+    border-right: 1.5px solid #5A4636;
+    border-bottom: 1.5px solid #5A4636;
+    transform: rotate(45deg);
+    transition: transform 300ms var(--ease-calm);
+  }
+
+  .footer-info-col.is-open .info-col-title::after {
+    margin-top: -2px;
+    transform: rotate(-135deg);
+  }
+
+  /* 내용은 기본 접힘 → 열릴 때만 펼침 */
+  .info-col-list {
+    max-height: 0;
+    overflow: hidden;
+    gap: 0;
+    transition: max-height 350ms var(--ease-calm);
+  }
+
+  .footer-info-col.is-open .info-col-list {
+    max-height: 280px;
+    padding-bottom: 16px;
+  }
+
+  .info-col-list li {
+    padding: 3px 0;
+    font-size: 12px;
+  }
+
   .footer-affiliate {
     flex-direction: column;
     gap: 8px;

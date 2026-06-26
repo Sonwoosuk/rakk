@@ -707,14 +707,14 @@ img { display: block; max-width: 100%; }
 }
 
 .btn--primary {
-  background: var(--color-cream);
+  background: var(--color-white);
   color: var(--color-ink);
-  border-color: var(--color-cream);
+  border-color: var(--color-white);
 }
 
 .btn--primary:hover {
-  background: var(--color-warm-white);
-  border-color: var(--color-warm-white);
+  background: var(--color-cream);
+  border-color: var(--color-cream);
   color: var(--color-ink);
 }
 
@@ -1088,9 +1088,9 @@ img { display: block; max-width: 100%; }
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.02em;
-  background: var(--color-cream);
+  background: var(--color-white);
   color: var(--color-ink);
-  border: 1px solid var(--color-cream);
+  border: 1px solid var(--color-white);
   transition-delay: 0.4s;
   transition: opacity 1.2s var(--ease-calm),
               transform 1.2s var(--ease-calm),
@@ -1107,9 +1107,9 @@ img { display: block; max-width: 100%; }
   transform: translateX(0);
 }
 .story-btn:hover {
-  background: var(--color-warm-white);
+  background: var(--color-cream);
   color: var(--color-ink);
-  border-color: var(--color-warm-white);
+  border-color: var(--color-cream);
   box-shadow: 0 4px 16px rgba(var(--color-ink-rgb), 0.18);
   transform: translateY(-2px);
 }
@@ -1479,14 +1479,14 @@ img { display: block; max-width: 100%; }
 
 /* 첫 번째 버튼(공간 이야기): 크림 CTA + 150ms 대기 후 등장 */
 .btn-space {
+  background: var(--color-white);
+  color: var(--color-ink);
+  border-color: var(--color-white);
+}
+.btn-space:hover {
   background: var(--color-cream);
   color: var(--color-ink);
   border-color: var(--color-cream);
-}
-.btn-space:hover {
-  background: var(--color-warm-white);
-  color: var(--color-ink);
-  border-color: var(--color-warm-white);
   box-shadow: 0 4px 16px rgba(var(--color-ink-rgb), 0.18);
   transform: translateY(-2px);
 }

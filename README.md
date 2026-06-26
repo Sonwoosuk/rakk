@@ -9,19 +9,6 @@
 
 ![메인](images/screenshot-main.png)
 
-<table>
-  <tr>
-    <td><img src="images/screenshot-hero.png" alt="히어로 슬라이드"></td>
-    <td><img src="images/screenshot-search.png" alt="검색 기능"></td>
-    <td><img src="images/screenshot-login.png" alt="로그인"></td>
-  </tr>
-  <tr>
-    <td><img src="images/screenshot-map.png" alt="지도"></td>
-    <td><img src="images/screenshot-lang.png" alt="언어 전환"></td>
-    <td></td>
-  </tr>
-</table>
-
 ---
 
 ## 구성
@@ -43,13 +30,18 @@
 
 ## 주요 기능
 
-- 첫 방문 시 브랜드 인트로 애니메이션 (재방문 시 자동 스킵)
-- 히어로 이미지 자동 슬라이드
-- 헤더 키워드 검색
-- Google 로그인 및 마이페이지
-- Firebase Firestore 기반 예약 저장
-- 카카오맵 지점 위치 안내
-- 언어 전환 (한/영)
+<table>
+  <tr>
+    <td align="center"><img src="images/screenshot-hero.png" width="300"><br><b>히어로 이미지 자동 슬라이드</b></td>
+    <td align="center"><img src="images/screenshot-search.png" width="300"><br><b>헤더 키워드 검색</b></td>
+    <td align="center"><img src="images/screenshot-login.png" width="300"><br><b>Google 로그인</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="images/screenshot-map.png" width="300"><br><b>카카오맵 지점 안내</b></td>
+    <td align="center"><img src="images/screenshot-lang.png" width="300"><br><b>언어 전환 (한/영)</b></td>
+    <td align="center"></td>
+  </tr>
+</table>
 
 ---
 

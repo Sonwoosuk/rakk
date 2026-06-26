@@ -3,7 +3,7 @@
 락고재의 공식 웹사이트 소스코드입니다.  
 빌드 도구 없이 HTML / CSS / Vanilla JS로 만든 정적 사이트이며, GitHub Pages로 배포합니다.
 
-**→ [sonwoosuk.github.io/rrak](https://sonwoosuk.github.io/rrak)**
+**과거와 현대의 조화를 표현한 락고재 리뉴얼 사이트→ [sonwoosuk.github.io/rrak](https://sonwoosuk.github.io/rrak)**
 
 ![락고재 메인](images/hero01.jpg)
 

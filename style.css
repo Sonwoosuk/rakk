@@ -706,6 +706,18 @@ img { display: block; max-width: 100%; }
   color: var(--color-ink);
 }
 
+.btn--primary {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  border-color: var(--color-cream);
+}
+
+.btn--primary:hover {
+  background: var(--color-warm-white);
+  border-color: var(--color-warm-white);
+  color: var(--color-ink);
+}
+
 /* =========================================================
    Indicator
 ========================================================= */

@@ -237,16 +237,11 @@
     clearTimeout(lockFallback);
     lockFallback = setTimeout(function () {
       if (pos === TOTAL + 1 || pos === 0) {
-        track.style.visibility = "hidden";
         if (pos === TOTAL + 1) { pos = 1; }
         if (pos === 0)         { pos = TOTAL; }
         place(false);
-        requestAnimationFrame(function () {
-          requestAnimationFrame(function () {
-            track.style.visibility = "";
-            unlock();
-          });
-        });
+        void track.offsetWidth; // transition:none 즉시 반영 보장
+        unlock();
       } else {
         unlock();
       }
@@ -259,18 +254,13 @@
     if (e.target !== track || e.propertyName !== "transform") return;
     clearTimeout(lockFallback);
     if (pos === TOTAL + 1 || pos === 0) {
-      // 점프 전 track을 잠깐 숨겨서 플리커 제거
-      track.style.visibility = "hidden";
+      // 복제본은 실제 슬라이드와 동일 이미지 → 트랜지션 없이 즉시 점프하면 보이지 않음
+      // (visibility 숨김 처리를 하면 그 순간 화면이 잠깐 비어 깜빡임이 발생하므로 사용하지 않음)
       if (pos === TOTAL + 1) { pos = 1; }
       if (pos === 0)         { pos = TOTAL; }
       place(false);
-      // 두 프레임 후 복원 (레이아웃 + 페인트 완료 보장)
-      requestAnimationFrame(function () {
-        requestAnimationFrame(function () {
-          track.style.visibility = "";
-          unlock();
-        });
-      });
+      void track.offsetWidth; // transition:none 즉시 반영 보장
+      unlock();
     } else {
       requestAnimationFrame(function () { unlock(); });
     }

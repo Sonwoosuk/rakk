@@ -1088,8 +1088,9 @@ img { display: block; max-width: 100%; }
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.02em;
-  color: var(--color-warm-white);
-  border: 1px solid rgba(var(--color-warm-white-rgb), 0.45);
+  background: var(--color-cream);
+  color: var(--color-ink);
+  border: 1px solid var(--color-cream);
   transition-delay: 0.4s;
   transition: opacity 1.2s var(--ease-calm),
               transform 1.2s var(--ease-calm),
@@ -1106,7 +1107,7 @@ img { display: block; max-width: 100%; }
 }
 .story-btn:hover {
   background: var(--color-warm-white);
-  color: var(--color-green);
+  color: var(--color-ink);
   border-color: var(--color-warm-white);
 }
 

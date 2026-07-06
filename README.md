@@ -16,7 +16,7 @@
 빌드 도구 없이 **HTML / CSS / Vanilla JS**만으로 제작한 락고재 한옥 스테이 공식 웹사이트 리뉴얼입니다.  
 전통 한옥의 감성을 현대적인 UI로 표현하고, Firebase와 Kakao Maps API를 연동해 실제 서비스 수준의 기능을 구현했습니다.
 
-**→ [sonwoosuk.github.io/rrak](https://sonwoosuk.github.io/rrak)**
+**→ [sonwoosuk.github.io/rrak](https://sonwoosuk.github.io/rakk/)**
 
 ---
 

@@ -5,7 +5,9 @@
     kiwa:    '락고재 기와본관',
     choga:   '락고재 초가별관',
     seoul:   '락고재 서울 본관',
-    bukchon: '북촌빈관 by 락고재'
+    bukchon: '북촌빈관 by 락고재',
+    dining:  '락고재 파인 다이닝',
+    culture: '락고재 컬쳐 라운지'
   };
 
   var CSS = [
@@ -60,12 +62,20 @@
     '.rkj-bk-dates{display:flex;align-items:center;gap:8px;font-size:13px;color:#6b5742;margin-bottom:6px;flex-wrap:wrap;}',
     '.rkj-bk-sep{color:#c0b0a0;}',
     '.rkj-bk-meta{font-size:12px;color:#9c8c7a;margin:0;}',
+    '.rkj-bk-foot{display:flex;align-items:center;justify-content:space-between;margin-top:10px;}',
     '.rkj-bk-status{',
-      'display:inline-block;margin-top:10px;',
+      'display:inline-block;',
       'font-size:11px;font-weight:600;letter-spacing:.08em;',
       'padding:3px 10px;border-radius:12px;',
       'background:#e8f0e0;color:#4e6a35;',
     '}',
+    '.rkj-bk-cancel{',
+      'background:transparent;border:1px solid #d8c8b8;',
+      'color:#a05a4a;font-size:12px;padding:4px 12px;border-radius:14px;',
+      'cursor:pointer;transition:background .2s,color .2s,border-color .2s;',
+    '}',
+    '.rkj-bk-cancel:hover{background:#f9ece8;border-color:#c89a8a;color:#7e3a2c;}',
+    '.rkj-bk-cancel:disabled{opacity:.5;cursor:default;}',
     '@media(max-width:600px){',
       '.rkj-mp-panel{padding:32px 20px;}',
       '.rkj-mp-profile{flex-wrap:wrap;}',
@@ -106,6 +116,7 @@
     document.body.appendChild(el);
 
     document.getElementById('rkjMpClose').addEventListener('click', closeMypageModal);
+    document.getElementById('rkjMpBookings').addEventListener('click', onCancelClick);
     el.addEventListener('click', function (e) { if (e.target === el) closeMypageModal(); });
     document.getElementById('rkjMpLogout').addEventListener('click', function () {
       if (!window.rkjAuth) return;
@@ -149,7 +160,32 @@
     if (document._rkjMpEsc) document.removeEventListener('keydown', document._rkjMpEsc);
   }
 
+  var currentUid = null;
+
+  function onCancelClick(e) {
+    var btn = e.target.closest ? e.target.closest('.rkj-bk-cancel') : null;
+    if (!btn || !btn.dataset.id || !window.rkjDb) return;
+    if (!confirm('이 예약을 취소하시겠습니까?')) return;
+
+    btn.disabled = true;
+    btn.textContent = '취소 중…';
+    window.rkjDb
+      .collection('bookings')
+      .doc(btn.dataset.id)
+      .delete()
+      .then(function () {
+        if (currentUid) loadBookings(currentUid);
+      })
+      .catch(function (err) {
+        btn.disabled = false;
+        btn.textContent = '예약 취소';
+        alert('예약 취소 중 오류가 발생했습니다: ' + err.message);
+        console.error('[MyPage]', err);
+      });
+  }
+
   function loadBookings(uid) {
+    currentUid = uid;
     var listEl = document.getElementById('rkjMpBookings');
     if (!listEl) return;
 
@@ -167,8 +203,15 @@
           listEl.innerHTML = '<p class="rkj-bk-empty">예약 내역이 없습니다.</p>';
           return;
         }
+        var bookings = [];
+        snapshot.forEach(function (doc) {
+          bookings.push({ id: doc.id, data: doc.data() });
+        });
+        bookings.sort(function (a, b) {
+          return (b.data.createdAt || '') < (a.data.createdAt || '') ? -1 : 1;
+        });
         var html = '';
-        snapshot.forEach(function (doc) { html += renderCard(doc.data()); });
+        bookings.forEach(function (b) { html += renderCard(b.data, b.id); });
         listEl.innerHTML = html;
       })
       .catch(function (err) {
@@ -177,22 +220,38 @@
       });
   }
 
-  function renderCard(d) {
+  function renderCard(d, id) {
     var prop = PROPERTY_LABELS[d.property] || d.property || '락고재';
+    var dates = '';
     var meta = [];
-    if (d.guests)           meta.push('인원 ' + d.guests + '명');
-    if (d.roomTypeName)     meta.push(d.roomTypeName);
-    if (d.dining === 'yes') meta.push('다이닝 포함');
+    if (d.guests) meta.push('인원 ' + d.guests + '명');
+
+    if (d.type === 'dining') {
+      dates =
+        '<span>예약일 <strong>' + (d.date || '—') + '</strong></span>' +
+        (d.timeName ? '<span class="rkj-bk-sep">·</span><span><strong>' + d.timeName + '</strong></span>' : '');
+      if (d.courseName) meta.push(d.courseName);
+    } else if (d.type === 'culture') {
+      dates = '<span>체험일 <strong>' + (d.date || '—') + '</strong></span>';
+      if (d.programName) meta.push(d.programName);
+    } else {
+      dates =
+        '<span>체크인 <strong>' + (d.checkIn || '—') + '</strong></span>' +
+        '<span class="rkj-bk-sep">→</span>' +
+        '<span>체크아웃 <strong>' + (d.checkOut || '—') + '</strong></span>';
+      if (d.roomTypeName)     meta.push(d.roomTypeName);
+      if (d.dining === 'yes') meta.push('다이닝 포함');
+    }
+
     return (
       '<div class="rkj-bk-card">' +
         '<p class="rkj-bk-property">' + prop + '</p>' +
-        '<div class="rkj-bk-dates">' +
-          '<span>체크인 <strong>' + (d.checkIn || '—') + '</strong></span>' +
-          '<span class="rkj-bk-sep">→</span>' +
-          '<span>체크아웃 <strong>' + (d.checkOut || '—') + '</strong></span>' +
-        '</div>' +
+        '<div class="rkj-bk-dates">' + dates + '</div>' +
         (meta.length ? '<p class="rkj-bk-meta">' + meta.join('  ·  ') + '</p>' : '') +
-        '<span class="rkj-bk-status">예약 완료</span>' +
+        '<div class="rkj-bk-foot">' +
+          '<span class="rkj-bk-status">예약 완료</span>' +
+          '<button type="button" class="rkj-bk-cancel" data-id="' + id + '">예약 취소</button>' +
+        '</div>' +
       '</div>'
     );
   }

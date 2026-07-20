@@ -110,7 +110,7 @@
 
 | 구분 | 링크 |
 |:---|:---|
-| 배포 사이트 | [sonwoosuk.github.io/rrak](https://sonwoosuk.github.io/rrak) |
+| 배포 사이트 | [sonwoosuk.github.io/rrak](https://sonwoosuk.github.io/rakk/) |
 | GitHub | [github.com/Sonwoosuk/rakk](https://github.com/Sonwoosuk/rakk) |
 | 기획서 | https://www.figma.com/slides/1NylLlTlIcuFgOj9VoevWz|
 | 디자인 (Figma) | (https://www.figma.com/design/Q3ifWTeKsUM1ELJ7IjdjtW/%EB%9D%BD%EA%B3%A0%EC%9E%AC-%EB%A6%AC%EB%89%B4%EC%96%BC-%EB%94%94%EC%9E%90%EC%9D%B8?node-id=0-1&t=duVyfbbO8axc1eQW-1) |

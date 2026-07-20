@@ -20,10 +20,10 @@
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Noto+Serif+TC:wght@200;300;400;500;700&display=swap" />
 
   <!-- 공통 스타일 및 서브페이지 스타일 링크 -->
-  <link rel="stylesheet" href="style.css?v=1.0.3" />
-  <link rel="stylesheet" href="history.css?v=1.1.8" />
-  <link rel="icon" type="image/png" href="favicon.png" />
-  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="stylesheet" href="../css/style.css?v=1.0.3" />
+  <link rel="stylesheet" href="../css/history.css?v=1.1.8" />
+  <link rel="icon" type="image/png" href="../favicon.png" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
 </head>
 
 <body class="history-page">
@@ -31,13 +31,13 @@
   <!-- ============ HEADER ============ -->
   <header class="header" id="header">
     <div class="header__inner container">
-      <a href="index.html" class="header__logo" aria-label="락고재 홈">
-        <img src="logo.png" alt="RAKKOJAE" />
+      <a href="../index.html" class="header__logo" aria-label="락고재 홈">
+        <img src="../logo.png" alt="RAKKOJAE" />
       </a>
 
       <nav class="nav" id="nav">
         <div class="nav__logo">
-          <img src="logo.png" alt="RAKKOJAE" />
+          <img src="../logo.png" alt="RAKKOJAE" />
         </div>
         <ul class="nav__list">
           <li><a href="history.html">락고재 100년</a></li>
@@ -100,7 +100,7 @@
       <!-- 1. 좌측 동영상 플레이어 영역 (위아래 빈틈없이 밀착) -->
       <div class="history-video-col">
         <div class="video-frame">
-          <video id="historyVideo" src="images/락고재 홍보 동영상.mp4" loop muted playsinline autoplay></video>
+          <video id="historyVideo" src="../images/락고재 홍보 동영상.mp4" loop muted playsinline autoplay></video>
 
           <!-- 미니멀 플레이어 컨트롤 바 -->
           <div class="video-controls">
@@ -206,7 +206,7 @@
     <div class="detail-left">
       <!-- 1. 달항아리 영역 (왼쪽 아래 배치) -->
       <div class="detail-jar-col">
-        <img src="images/moon-jar.png" alt="달항아리" class="detail-jar reveal-element">
+        <img src="../images/moon-jar.png" alt="달항아리" class="detail-jar reveal-element">
       </div>
 
       <!-- 2. 설명 글 영역 (중앙 배치) -->
@@ -226,14 +226,14 @@
       </div>
     </div>
     <div class="detail-right">
-      <img src="images/history-02.jpg" alt="락고재 전경" class="detail-bg-img reveal-element">
+      <img src="../images/history-02.jpg" alt="락고재 전경" class="detail-bg-img reveal-element">
     </div>
   </section>
 
   <!-- ============ NEW ANSIK SECTION ============ -->
   <section class="history-ansik-section">
     <div class="ansik-left">
-      <img src="images/history-03.jpg" alt="락고재 안식" class="ansik-bg-img reveal-element">
+      <img src="../images/history-03.jpg" alt="락고재 안식" class="ansik-bg-img reveal-element">
     </div>
     <div class="ansik-right">
       <div class="ansik-content">
@@ -254,7 +254,7 @@
 
       <!-- 오른쪽 아래 흰색 png 로고 이미지 (여기서 직접 교체해 주세요) -->
       <div class="ansik-logo-wrap reveal-element delay-3">
-        <img src="images/rakkojae-logo-white.png" alt="락고재 로고" class="ansik-logo">
+        <img src="../images/rakkojae-logo-white.png" alt="락고재 로고" class="ansik-logo">
       </div>
     </div>
   </section>
@@ -269,7 +269,7 @@
         <!-- 좌측 로고 영역 -->
         <div class="footer-logo-col">
           <div class="footer-logo">
-            <img src="images/footer-logo-01.png" class="footer-logo-img" alt="RAKKOJAE HANOK HOTELS" />
+            <img src="../images/footer-logo-01.png" class="footer-logo-img" alt="RAKKOJAE HANOK HOTELS" />
           </div>
         </div>
 
@@ -362,7 +362,7 @@
         <!-- 중앙 좌측: 미쉐린 가이드 선정 로고 -->
         <div class="footer-michelin">
           <div class="michelin-badge">
-            <img src="images/michelin.png" class="footer-michelin-img" alt="미쉐린 가이드 서울" />
+            <img src="../images/michelin.png" class="footer-michelin-img" alt="미쉐린 가이드 서울" />
             <div class="michelin-desc-box">
               <span class="michelin-badge-desc">'미쉐린 가이드' 선정 한옥 호텔</span>
             </div>
@@ -413,16 +413,16 @@
     </svg>
   </button>
 
-  <script src="search.js"></script>
-  <script src="script.js?v=1.0.1"></script>
-  <script src="history.js?v=1.0.1"></script>
+  <script src="../js/search.js"></script>
+  <script src="../js/script.js?v=1.0.1"></script>
+  <script src="../js/history.js?v=1.0.1"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
-  <script src="firebase-config.js"></script>
-  <script src="login.js"></script>
-  <script src="translate.js"></script>
-  <script src="mypage.js"></script>
+  <script src="../js/firebase-config.js"></script>
+  <script src="../js/login.js"></script>
+  <script src="../js/translate.js"></script>
+  <script src="../js/mypage.js"></script>
 </body>
 
 </html>

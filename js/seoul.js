@@ -44,7 +44,6 @@
     });
   }
 
-
   /* =========================================================
      헤더 스크롤 상태 + 플로팅 탑버튼
   ========================================================= */
@@ -60,8 +59,8 @@
 
   if (floatingTopBtn) {
     window.addEventListener("scroll", function () {
-      const scrollY    = window.scrollY;
-      const maxScroll  = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollY   = window.scrollY;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
       floatingTopBtn.classList.toggle("is-visible", scrollY > maxScroll / 2);
     }, { passive: true });
 
@@ -69,7 +68,6 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
-
 
   /* =========================================================
      자회사 드롭다운
@@ -86,105 +84,72 @@
   }
 
   /* =========================================================
-     프리미엄 어메니티 슬라이더 (앱솔루트 포지션 스왑 방식)
+     프리미엄 어메니티 슬라이더
   ========================================================= */
-  const amenityTrack = document.getElementById("amenityTrack");
+  const amenityTrack  = document.getElementById("amenityTrack");
   const amenityNextBtn = document.getElementById("amenityNextBtn");
   const amenityPrevBtn = document.getElementById("amenityPrevBtn");
-  
+
   if (amenityTrack && amenityNextBtn && amenityPrevBtn) {
     const slides = Array.from(amenityTrack.querySelectorAll(".amenity-slide"));
     let isReversed = false;
-    
+
     function swapAmenitySlider() {
       isReversed = !isReversed;
-      if (isReversed) {
-        slides[0].classList.remove("is-main");
-        slides[0].classList.add("is-sub");
-        slides[1].classList.remove("is-sub");
-        slides[1].classList.add("is-main");
-      } else {
-        slides[0].classList.remove("is-sub");
-        slides[0].classList.add("is-main");
-        slides[1].classList.remove("is-main");
-        slides[1].classList.add("is-sub");
-      }
-      
-      // 버튼 상태 업데이트
-      if (isReversed) {
-        amenityNextBtn.style.display = "none";
-        amenityPrevBtn.style.display = "flex";
-      } else {
-        amenityNextBtn.style.display = "flex";
-        amenityPrevBtn.style.display = "none";
-      }
+      slides[0].classList.toggle("is-main", !isReversed);
+      slides[0].classList.toggle("is-sub",  isReversed);
+      slides[1].classList.toggle("is-sub",  !isReversed);
+      slides[1].classList.toggle("is-main", isReversed);
+      amenityNextBtn.style.display = isReversed ? "none" : "flex";
+      amenityPrevBtn.style.display = isReversed ? "flex" : "none";
     }
-    
+
     amenityNextBtn.addEventListener("click", swapAmenitySlider);
     amenityPrevBtn.addEventListener("click", swapAmenitySlider);
-    
-    // 초기 설정
     amenityNextBtn.style.display = "flex";
     amenityPrevBtn.style.display = "none";
   }
 
   /* =========================================================
-     락고재 다이닝 슬라이더 (앱솔루트 포지션 스왑 방식)
+     다이닝 슬라이더
   ========================================================= */
-  const diningTrack = document.getElementById("diningTrack");
+  const diningTrack   = document.getElementById("diningTrack");
   const diningNextBtn = document.getElementById("diningNextBtn");
   const diningPrevBtn = document.getElementById("diningPrevBtn");
-  
+
   if (diningTrack && diningNextBtn && diningPrevBtn) {
     const diningSlides = Array.from(diningTrack.querySelectorAll(".dining-slide"));
     let diningIsReversed = false;
-    
+
     function swapDiningSlider() {
       diningIsReversed = !diningIsReversed;
-      if (diningIsReversed) {
-        diningSlides[0].classList.remove("is-main");
-        diningSlides[0].classList.add("is-sub");
-        diningSlides[1].classList.remove("is-sub");
-        diningSlides[1].classList.add("is-main");
-      } else {
-        diningSlides[0].classList.remove("is-sub");
-        diningSlides[0].classList.add("is-main");
-        diningSlides[1].classList.remove("is-main");
-        diningSlides[1].classList.add("is-sub");
-      }
-      
-      // 버튼 상태 업데이트
-      if (diningIsReversed) {
-        diningNextBtn.style.display = "none";
-        diningPrevBtn.style.display = "flex";
-      } else {
-        diningNextBtn.style.display = "flex";
-        diningPrevBtn.style.display = "none";
-      }
+      diningSlides[0].classList.toggle("is-main", !diningIsReversed);
+      diningSlides[0].classList.toggle("is-sub",  diningIsReversed);
+      diningSlides[1].classList.toggle("is-sub",  !diningIsReversed);
+      diningSlides[1].classList.toggle("is-main", diningIsReversed);
+      diningNextBtn.style.display = diningIsReversed ? "none" : "flex";
+      diningPrevBtn.style.display = diningIsReversed ? "flex" : "none";
     }
-    
+
     diningNextBtn.addEventListener("click", swapDiningSlider);
     diningPrevBtn.addEventListener("click", swapDiningSlider);
-    
-    // 초기 설정
     diningNextBtn.style.display = "flex";
     diningPrevBtn.style.display = "none";
   }
 
   /* =========================================================
-     초가 객실 섹션 스크롤 스파이 & Fixed 엘리먼트 제어
+     서울 본관 객실 섹션 스크롤 스파이 & Fixed 엘리먼트 제어
   ========================================================= */
-  const roomsSection = document.getElementById("chogaRoomsSection");
-  const roomsSideNav = document.getElementById("roomsSideNav");
-  const roomsBookBtn = document.getElementById("roomsBookBtn");
-  const roomItems = document.querySelectorAll(".room-article");
-  const sideNavItems = document.querySelectorAll(".rooms-side-nav .side-nav-item");
-  const hanjaCho = document.querySelector(".char-cho");
-  const hanjaGa = document.querySelector(".char-ga");
+  const roomsSection  = document.getElementById("seoulRoomsSection");
+  const roomsSideNav  = document.getElementById("roomsSideNav");
+  const roomsBookBtn  = document.getElementById("roomsBookBtn");
+  const roomItems     = document.querySelectorAll(".room-article");
+  const sideNavItems  = document.querySelectorAll(".rooms-side-nav .side-nav-item");
+  const hanjaBuk  = document.querySelector(".char-buk");
+  const hanjaChon = document.querySelector(".char-chon");
 
   if (roomsSection && "IntersectionObserver" in window) {
-    
-    // 섹션 전체 진입 감지 (Fixed 요소 표시)
+
     const sectionObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -195,132 +160,92 @@
               roomsSideNav.classList.remove("is-animating");
               void roomsSideNav.offsetWidth;
               roomsSideNav.classList.add("is-animating");
-              
-              if(hanjaCho) hanjaCho.classList.add("is-active");
-              if(hanjaGa) hanjaGa.classList.add("is-active");
+              if (hanjaBuk)  hanjaBuk.classList.add("is-active");
+              if (hanjaChon) hanjaChon.classList.add("is-active");
             }
           }
-          if (roomsBookBtn) {
-            roomsBookBtn.classList.add("is-visible");
-          }
+          if (roomsBookBtn) roomsBookBtn.classList.add("is-visible");
         } else {
           if (roomsSideNav) {
             roomsSideNav.classList.remove("is-visible");
             roomsSideNav.classList.remove("is-animating");
           }
-          if (roomsBookBtn) {
-            roomsBookBtn.classList.remove("is-visible");
-          }
+          if (roomsBookBtn) roomsBookBtn.classList.remove("is-visible");
         }
       });
-    }, {
-      rootMargin: "-25% 0px -25% 0px",
-      threshold: 0
-    });
-    
+    }, { rootMargin: "-25% 0px -25% 0px", threshold: 0 });
+
     sectionObserver.observe(roomsSection);
 
-    // 개별 객실 스크롤 감지 (왼쪽 Nav 불릿 활성화)
     const roomObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const targetId = entry.target.id;
-          
           sideNavItems.forEach(item => {
-            if (item.getAttribute("data-target") === targetId) {
-              item.classList.add("is-active");
-            } else {
-              item.classList.remove("is-active");
-            }
+            item.classList.toggle("is-active", item.getAttribute("data-target") === targetId);
           });
         }
       });
-    }, {
-      rootMargin: "-40% 0px -40% 0px",
-      threshold: 0
-    });
+    }, { rootMargin: "-40% 0px -40% 0px", threshold: 0 });
 
-    roomItems.forEach(room => {
-      roomObserver.observe(room);
-    });
+    roomItems.forEach(room => roomObserver.observe(room));
 
-    // 사이드바 클릭 이동
     sideNavItems.forEach(item => {
       const link = item.querySelector("a");
       if (link) {
         link.addEventListener("click", e => {
           e.preventDefault();
-          const targetId = item.getAttribute("data-target");
-          const targetRoom = document.getElementById(targetId);
-          if (targetRoom) {
-            targetRoom.scrollIntoView({ behavior: "smooth", block: "center" });
-          }
+          const targetRoom = document.getElementById(item.getAttribute("data-target"));
+          if (targetRoom) targetRoom.scrollIntoView({ behavior: "smooth", block: "center" });
         });
       }
     });
   }
 
   /* =========================================================
-     객실 예약 바 UI 업데이트 (Custom Select & Flatpickr)
+     객실 예약 바 UI (Custom Select & Flatpickr)
   ========================================================= */
-  
-  // 1. Custom Select 로직
-  const customSelects = document.querySelectorAll('.custom-select-wrapper');
+  const customSelects = document.querySelectorAll(".custom-select-wrapper");
   customSelects.forEach(wrapper => {
-    const trigger = wrapper.querySelector('.custom-select-trigger');
-    const textSpan = wrapper.querySelector('.res-text');
-    const options = wrapper.querySelectorAll('.custom-option');
-    const hiddenInput = wrapper.querySelector('.res-hidden-input');
+    const trigger     = wrapper.querySelector(".custom-select-trigger");
+    const textSpan    = wrapper.querySelector(".res-text");
+    const options     = wrapper.querySelectorAll(".custom-option");
+    const hiddenInput = wrapper.querySelector(".res-hidden-input");
 
     if (trigger) {
-      trigger.addEventListener('click', (e) => {
-        e.stopPropagation(); // 클릭 이벤트 전파 방지
-        const isOpen = wrapper.classList.contains('is-open');
-        
-        // 다른 열려있는 드롭다운 모두 닫기
-        document.querySelectorAll('.custom-select-wrapper').forEach(w => w.classList.remove('is-open'));
-        
-        if (!isOpen) {
-          wrapper.classList.add('is-open');
-        }
+      trigger.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isOpen = wrapper.classList.contains("is-open");
+        document.querySelectorAll(".custom-select-wrapper").forEach(w => w.classList.remove("is-open"));
+        if (!isOpen) wrapper.classList.add("is-open");
       });
     }
 
     options.forEach(option => {
-      option.addEventListener('click', (e) => {
+      option.addEventListener("click", (e) => {
         e.stopPropagation();
-        const value = option.getAttribute('data-value');
-        const text = option.textContent;
-
-        textSpan.textContent = text;
-        textSpan.style.color = '#3D4A2F';
-        textSpan.style.fontWeight = '600';
-        
-        if (hiddenInput) {
-          hiddenInput.value = value;
+        if (textSpan) {
+          textSpan.textContent = option.textContent;
+          textSpan.style.color = '#3D4A2F';
+          textSpan.style.fontWeight = '600';
         }
-
-        wrapper.classList.remove('is-open');
+        if (hiddenInput) hiddenInput.value    = option.getAttribute("data-value");
+        wrapper.classList.remove("is-open");
       });
     });
   });
 
-  // 바깥 클릭 시 모든 드롭다운 닫기
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.custom-select-wrapper')) {
-      document.querySelectorAll('.custom-select-wrapper').forEach(w => w.classList.remove('is-open'));
-    }
+  document.addEventListener("click", () => {
+    document.querySelectorAll(".custom-select-wrapper").forEach(w => w.classList.remove("is-open"));
   });
 
-  // 2. Flatpickr 달력 연동 (체크인, 체크아웃)
-  if (typeof flatpickr !== 'undefined') {
+  if (typeof flatpickr !== "undefined") {
     flatpickr(".res-input[type='date']", {
       locale: "ko",
       minDate: "today",
       dateFormat: "Y-m-d",
       disableMobile: "true",
       onChange: function(selectedDates, dateStr, instance) {
-        // 달력에서 날짜를 선택하면 화면의 텍스트를 업데이트
         const textSpan = instance.element.closest('.res-item').querySelector('.res-text');
         if (textSpan) {
           textSpan.textContent = dateStr;
@@ -332,48 +257,25 @@
   }
 
   /* =========================================================
-     Scroll Reveal (사라락 나타나며 블러 해제 어트랙션)
+     Reveal 애니메이션
   ========================================================= */
-  const revealItems = document.querySelectorAll('.reveal-item');
-  let revealQueue = [];
-  let revealTimer = null;
+  const revealItems = document.querySelectorAll(".reveal-item");
+  if ("IntersectionObserver" in window && revealItems.length) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-revealed");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
 
-  const revealObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        revealQueue.push(entry.target);
-        observer.unobserve(entry.target);
-      }
-    });
-
-    // 큐에 쌓인 항목들을 순차적으로 딜레이를 주어 나타나게 함
-    if (revealQueue.length > 0 && !revealTimer) {
-      revealTimer = setTimeout(() => {
-        // 화면의 위에서부터 아래 순서대로 애니메이션 적용
-        revealQueue.sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top);
-        
-        revealQueue.forEach((item, index) => {
-          setTimeout(() => {
-            item.classList.add('is-revealed');
-          }, index * 150); // 150ms 간격으로 스르륵 나타남
-        });
-        
-        revealQueue = [];
-        revealTimer = null;
-      }, 50); // 50ms 동안 모아서 한 번에 처리 (동시에 보이는 요소들)
-    }
-  }, {
-    rootMargin: "0px 0px -15% 0px", // 화면 하단 15% 진입 시 트리거
-    threshold: 0
-  });
-
-  revealItems.forEach(item => {
-    revealObserver.observe(item);
-  });
+    revealItems.forEach(item => revealObserver.observe(item));
+  }
 
   /* =========================================================
      예약 검색 폼 제출 제어 (커스텀 팝업 창)
-   ========================================================= */
+  ========================================================= */
   const resForm = document.querySelector(".res-bar");
   if (resForm) {
     resForm.addEventListener("submit", function (e) {
@@ -502,7 +404,7 @@
 
     modal.innerHTML = `
       <div class="rkj-modal-content">
-        <img src="logo.png" class="rkj-modal-logo" alt="락고재 로고" />
+        <img src="../logo.png" class="rkj-modal-logo" alt="락고재 로고" />
         <div class="rkj-modal-hanja">樂古齋</div>
         <h3 class="rkj-modal-title">예약이 완료되었습니다</h3>
         <div class="rkj-modal-details">

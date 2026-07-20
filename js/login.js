@@ -1,6 +1,9 @@
 (function () {
   "use strict";
 
+  // 루트(index.html)와 html/ 하위 페이지 어디서 로드돼도 리소스 경로가 맞도록 보정
+  var ASSET_BASE = location.pathname.indexOf('/html/') !== -1 ? '../' : '';
+
   // 모든 페이지 로드 시 "로그인" 텍스트를 갖는 링크를 탐색하여 이벤트를 연동합니다.
   document.addEventListener("DOMContentLoaded", () => {
     injectMobileLoginLink();
@@ -176,7 +179,7 @@
       .rkj-login-right {
         flex: 1;
         position: relative;
-        background-image: url('images/login.01.jpg');
+        background-image: url('${ASSET_BASE}images/login.01.jpg');
         background-size: cover;
         background-position: center;
         display: flex;
@@ -370,7 +373,7 @@
           </svg>
         </button>
         <div class="rkj-login-left">
-          <img src="logo.png" class="rkj-login-logo" alt="락고재 로고" />
+          <img src="${ASSET_BASE}logo.png" class="rkj-login-logo" alt="락고재 로고" />
           <p class="rkj-login-slogan">
             <span class="slogan-line line-1">전통의 품격과 현대의 안락함이 조화로운 공간,</span>
             <span class="slogan-line line-2">락고재에서의 시간을 다시 만나보세요.</span>

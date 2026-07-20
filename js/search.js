@@ -59,6 +59,13 @@
     }
   ];
 
+  // 루트(index.html)와 html/ 하위 페이지 어디서든 올바른 링크가 되도록 경로 보정
+  var IN_HTML_DIR = location.pathname.indexOf('/html/') !== -1;
+  function resolveUrl(url) {
+    if (url.indexOf('index.html') === 0) return (IN_HTML_DIR ? '../' : '') + url;
+    return (IN_HTML_DIR ? '' : 'html/') + url;
+  }
+
   // 검색 힌트 맵핑
   var SUGGESTIONS = {
     "락고": "락고재 한옥스테이는 어떠신지요?",
@@ -176,7 +183,7 @@
         var html = "";
         matches.forEach(function (item) {
           html += '<div class="search-result-item">' +
-                  '  <a href="' + item.url + '">' +
+                  '  <a href="' + resolveUrl(item.url) + '">' +
                   '    <span class="search-result-title">' + item.title + '</span>' +
                   '    <span class="search-result-desc">' + item.desc + '</span>' +
                   '  </a>' +

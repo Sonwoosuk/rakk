@@ -330,7 +330,7 @@
 
     modal.innerHTML = `
       <div class="rkj-modal-content">
-        <img src="logo.png" class="rkj-modal-logo" alt="락고재 로고" />
+        <img src="../logo.png" class="rkj-modal-logo" alt="락고재 로고" />
         <div class="rkj-modal-hanja">樂古齋</div>
         <h3 class="rkj-modal-title">예약이 완료되었습니다</h3>
         <div class="rkj-modal-details">

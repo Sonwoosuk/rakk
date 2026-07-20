@@ -373,11 +373,12 @@
   var storyPrevBtn  = document.getElementById('storyPrev');
   var storyNextBtn  = document.getElementById('storyNext');
 
-  // 이미지 목록
+  // 이미지 목록 (index.html과 html/history.html 양쪽에서 로드되므로 경로 보정)
+  var IMG_BASE = location.pathname.indexOf('/html/') !== -1 ? '../' : '';
   var STORY_IMAGES = [
-    'images/story-01-l.jpg',
-    'images/story-01-m.jpg',
-    'images/story-01-r.jpg'
+    IMG_BASE + 'images/story-01-l.jpg',
+    IMG_BASE + 'images/story-01-m.jpg',
+    IMG_BASE + 'images/story-01-r.jpg'
   ];
 
   var IMG_TOTAL     = STORY_IMAGES.length;
